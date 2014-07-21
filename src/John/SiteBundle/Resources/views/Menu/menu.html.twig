@@ -1,0 +1,27 @@
+<ul class="hmenu">
+    <li>
+        <a href="{{ path('homepage') }}" class="active">
+            Accueil
+        </a>
+    </li>
+   {# {% for category in categoriesWithArticles %}
+        <li>
+            <a href="{{ path('category_show', { 'slug': category.slug }) }}">{{ category.title }}</a>
+                {% if category.articles is defined and category.articles is not empty %}  
+                    {% for article in category.articles %}
+                        <ul>
+                            <li><a href="{{ path('article_show', { 'slug': article.slug }) }}">{{ article.title }}</a></li>
+                        </ul>
+                    {% endfor %}
+                {% endif %}
+                {% if category.subCategories is defined and category.subCategories is not empty %}
+                     {{ render(controller('JohnSiteBundle:SubCategory:subCategoriesByCategoryWithPosition', { 'slug': category.slug })) }} 
+                {% endif %}
+            </li>
+    {% endfor %} #}
+            <li>
+                <a href="#">
+                    Contact
+                </a>
+            </li>
+  </ul>

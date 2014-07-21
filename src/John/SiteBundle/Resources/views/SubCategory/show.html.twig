@@ -1,0 +1,103 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+<div class="sheet clearfix">
+    <div class="layout-wrapper">
+        <div class="content-layout">
+            <div class="content-layout-row">
+                <div class="layout-cell content">
+                    <article class="post article">
+                        
+                  {#      <h5>COLONNE DE DROITE:</h5>
+                        
+                        <h3>{{ subCategory.category.title }}</h3>
+                        {% if subCategory.category.subCategories is defined  and subCategory.category.subCategories is not empty %}
+                                <ul>
+                                    {% for subCategory in subCategory.category.subCategories %}
+                                        <li>
+                                            <a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a>
+                                            {% if subCategory.articles is defined and subCategory.articles is not empty %}  
+                                                <ul>
+                                                     {% for article in subCategory.articles %}
+                                                       <!--  <li><a href="{{ path('article_show', { 'slug': article.slug }) }}">{{ article.title }}</a></li>  -->
+                                                       <li><a href="{{subCategory.slug}}#{{article.slug}}">{{ article.title }}</a></li>
+                                                     {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                         {% endif %}
+                        #}
+                        
+                        <div class="postcontent postcontent-0 clearfix">
+                            <p><a href="{{ path('homepage') }}">Accueil</a> > <a href="{{ path('category_show', { 'slug': subCategory.category.slug }) }}">{{ subCategory.category.title }}</a> > {{ subCategory.title }} </p>
+
+                            <br/>
+
+                            <h1 class="h1-left">{{ subCategory.title }}</h1>
+
+                        {#
+                        <table class="record_properties">
+                            <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ subCategory.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Createdat</th>
+                                    <td>{{ subCategory.createdAt|date('Y-m-d H:i:s') }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Updatedat</th>
+                                    <td>{{ subCategory.updatedAt|date('Y-m-d H:i:s') }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Slug</th>
+                                    <td>{{ subCategory.slug }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Title</th>
+                                    <td>{{ subCategory.title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Picture</th>
+                                    <td>{{ subCategory.picture }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Shorttext</th>
+                                    <td>{{ subCategory.shortText }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Metatitle</th>
+                                    <td>{{ subCategory.metaTitle }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Metadescription</th>
+                                    <td>{{ subCategory.metaDescription }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        #}
+
+                            <div style="margin-top:10px">
+                            {% if articles is defined and articles is not empty %}
+                                        {% for article in articles %}
+                                             {% include 'JohnSiteBundle:Article:articleList.html.twig' with {'article' : article }  %}
+
+                                             {% if loop.index != loop.last %}
+                                    <div class="separation"></div>
+                                             {% endif %}
+                                        {% endfor %}
+                            {% endif %}
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

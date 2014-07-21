@@ -1,0 +1,306 @@
+<?php
+
+namespace John\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+/**
+ * Article
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="John\AdminBundle\Repository\ArticleRepository")
+ */
+class Article {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @Gedmo\Translatable
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=255, unique=true)
+     */
+    private $slug;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="body", type="text")
+     */
+    private $body;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     */
+    private $picture;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="video", type="string", length=255, nullable=true)
+     */
+    private $video;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="John\AdminBundle\Entity\Category", inversedBy="articles")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="John\AdminBundle\Entity\SubCategory", inversedBy="articles")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $subCategory;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Article
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Article
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Article
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Article
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set body
+     *
+     * @param string $body
+     * @return Article
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return string 
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     * @return Article
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string 
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set video
+     *
+     * @param string $video
+     * @return Article
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
+    /**
+     * Get video
+     *
+     * @return string 
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \John\AdminBundle\Entity\Category $category
+     * @return Article
+     */
+    public function setCategory(\John\AdminBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \John\AdminBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set subCategory
+     *
+     * @param \John\AdminBundle\Entity\SubCategory $subCategory
+     * @return Article
+     */
+    public function setSubCategory(\John\AdminBundle\Entity\SubCategory $subCategory = null)
+    {
+        $this->subCategory = $subCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get subCategory
+     *
+     * @return \John\AdminBundle\Entity\SubCategory 
+     */
+    public function getSubCategory()
+    {
+        return $this->subCategory;
+    }
+
+}

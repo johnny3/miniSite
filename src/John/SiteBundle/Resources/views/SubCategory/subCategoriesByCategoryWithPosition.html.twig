@@ -1,0 +1,14 @@
+<ul>
+    {% for subCategory in subCategories %}
+        <li>
+            <a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a>
+            {% if subCategory.articles is defined and subCategory.articles is not empty %}  
+                <ul>
+                     {% for article in subCategory.articles %}
+                        <li><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}#{{article.slug}}">{{ article.title }}</a></li>
+                     {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

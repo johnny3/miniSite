@@ -1,0 +1,164 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+<div class="sheet clearfix">
+    <div class="layout-wrapper">
+        <div class="content-layout">
+            <div class="content-layout-row">
+                <div class="layout-cell content">
+                    <article class="post article">
+                        <div class="postcontent postcontent-0 clearfix">
+                            <p><a href="{{ path('homepage') }}">Accueil</a> > {{ category.title }}</p>
+
+                    {% if subCategories is not defined %}
+                            <h1 class="h1-left">{{ category.title }}</h1>
+                    {% endif %}
+                        {#
+                            <table class="record_properties">
+                                <tbody>
+                                    <tr>
+                                        <th>Id</th>
+                                        <td>{{ category.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Createdat</th>
+                                        <td>{{ category.createdAt|date('Y-m-d H:i:s') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Updatedat</th>
+                                        <td>{{ category.updatedAt|date('Y-m-d H:i:s') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Slug</th>
+                                        <td>{{ category.slug }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Title</th>
+                                        <td>{{ category.title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Picture</th>
+                                        <td>{{ category.picture }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Shorttext</th>
+                                        <td>{{ category.shortText }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Metatitle</th>
+                                        <td>{{ category.metaTitle }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Metadescription</th>
+                                        <td>{{ category.metaDescription }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tags</th>
+                                        <td>{{ category.tags }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        #}
+
+                        {% if subCategories is defined and subCategories is not empty %}
+
+                         {#   <h1>SubCategories</h1>
+
+                            <table>
+                                <tbody> #}
+                                        {% for subCategory in subCategories %}
+
+                                {% if loop.first %}
+                                    {# on ouvre les div au premier tour de boucle #}
+                            <div class="content-layout-wrapper">
+                                <div class="content-layout layout-item-3">
+                                    <div class="content-layout-row">
+                                {% endif %}
+
+                                                {# on affiche les informations de la catégorie #}    
+                                            <div class="layout-cell {% if loop.index is divisibleby(3) %}layout-item-7{% else %}layout-item-5{% endif %}" style="width: 33%" >
+                                                <h1><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a></h1>
+                                                <p style="text-align: center;"><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}"><img alt="" src="{{ asset(['bundles/johnsite/images/', subCategory.picture] | join | apply_filter('thumbnail_category')) }}" class=""></a><br></p>
+                                                <p>{{ subCategory.shortText| raw }}</p>
+                                            </div>
+
+                                {% if loop.index is divisibleby(3) %}
+                                {# on ferme les div toutes les 3 catégories #}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    {# on place la barre de séparation #}
+                                <div class="separation"></div>
+
+                                         {% if loop.index != loop.last %}
+                                    {# on ouvre les div tant que l'on n'a pas atteint la dernière itération #}
+                                <div class="content-layout-wrapper">
+                                    <div class="content-layout layout-item-3">
+                                        <div class="content-layout-row">
+                                         {% endif %}
+                                {% endif %}     
+
+                        {# 
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <td>{{ subCategory.id }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Createdat</th>
+                                                        <td>{{ subCategory.createdAt|date('Y-m-d H:i:s') }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Updatedat</th>
+                                                        <td>{{ subCategory.updatedAt|date('Y-m-d H:i:s') }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Slug</th>
+                                                        <td>{{ subCategory.slug }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Title</th>
+                                                        <td><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Picture</th>
+                                                        <td>{{ subCategory.picture }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Shorttext</th>
+                                                        <td>{{ subCategory.shortText }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Metatitle</th>
+                                                        <td>{{ subCategory.metaTitle }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Metadescription</th>
+                                                        <td>{{ subCategory.metaDescription }}</td>
+                                                    </tr>#}
+                                            {% endfor %}
+
+                          {#    </tbody>
+                            </table>#}
+                        {% endif %}
+                                                <div style="margin-top:10px">
+                                {% if articles is defined and articles is not empty %}  
+
+                                    {% for article in articles %}
+                                            {% include 'JohnSiteBundle:Article:articleList.html.twig' with {'article' : article }  %}
+
+                                            {% if loop.index != loop.last %}
+                                                        <div class="separation"></div>
+                                            {% endif %}
+                                    {% endfor %}
+                                 {% endif %}
+                                                    </div>
+                                                </div>
+                                                </article>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+{% endblock %}

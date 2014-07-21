@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="sheet clearfix">
+        <div class="layout-wrapper">
+            <div class="content-layout">
+                <div class="content-layout-row">
+                    <div class="layout-cell content">
+                        <article class="post article">
+                            <div class="postcontent postcontent-0 clearfix">
+                                {% if article.subCategory is defined and article.subCategory is not null %}
+                                    <p><a href="{{ path('homepage') }}">Accueil</a> > <a href="{{ path('category_show', { 'slug': article.subCategory.category.slug }) }}">{{ article.subCategory.category.title }}</a> > <a href="{{ path('subcategory_show', { 'slug': article.subCategory.slug }) }}">{{ article.subCategory.title }}</a> > {{ article.title }}</p>
+                                {% else %} 
+                                    <p><a href="{{ path('homepage') }}">Accueil</a> > <a href="{{ path('category_show', { 'slug': article.category.slug }) }}">{{ article.category.title }}</a> > {{ article.title }}</p>
+                                {% endif %}
+
+                            {% include 'JohnSiteBundle:Article:article.html.twig' with {'article' : article} %}    
+
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

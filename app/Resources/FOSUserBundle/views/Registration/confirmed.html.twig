@@ -1,0 +1,32 @@
+{% extends "::baseAdmin.html.twig" %}
+
+{% block body_admin %}
+
+<h2>Profile</h2>
+
+<div class="clear"></div> <!-- End .clear -->
+<div class="content-box"><!-- Start Content Box -->
+    <div class="content-box-header">
+
+        <div class="clear"></div>
+
+    </div> <!-- End .content-box-header -->
+
+    <div class="content-box-content">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="notification success png_bg">
+                    <div>{{ flashMessage }}</div>
+                </div>
+            {% endfor %}
+        
+            <p>{{ 'Registration Confirmed.'|trans({'%username%': user.username}) }}</p>
+            {% if app.session is not empty %}
+                {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+                {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
+            {% endif %}
+                
+            <p>You can now <a href="{{path('fos_user_security_logout')}}" title="sign out">sign out</a> if you want to connect with your account.</p>
+    </div> <!-- End .content-box-content -->
+</div> <!-- End .content-box -->
+
+{% endblock body_admin %}
