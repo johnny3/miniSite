@@ -497,13 +497,17 @@ class SubCategory {
 
     public function uploadProfilePicture()
     {
+        $fileNameExplode = explode('.', $this->file->getClientOriginalName());
+        $filenameExtension = end($fileNameExplode);
+        $fileName = md5(sha1($this->file->getClientOriginalName().microtime(true))).'.'.$filenameExtension;
+        
         // Nous utilisons le nom de fichier original, donc il est dans la pratique
         // nécessaire de le nettoyer pour éviter les problèmes de sécurité
         // move copie le fichier présent chez le client dans le répertoire indiqué.
-        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+        $this->file->move($this->getUploadRootDir(), $fileName);
 
         // On sauvegarde le nom de fichier
-        $this->picture = $this->file->getClientOriginalName();
+        $this->picture = $fileName;
 
         // La propriété file ne servira plus
         $this->file = null;

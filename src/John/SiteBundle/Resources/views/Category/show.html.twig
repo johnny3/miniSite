@@ -49,7 +49,7 @@
                                             {# on affiche les informations de la sous catégorie #}    
                                             <div class="layout-cell {% if loop.index is divisibleby(3) %}layout-item-7{% else %}layout-item-5{% endif %}" style="width: 33%" >
                                                 <h1><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a></h1>
-                                                <p style="text-align: center;"><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}"><img alt="" src="{{ asset(['bundles/johnsite/images/', subCategory.picture] | join | apply_filter('thumbnail_category')) }}" class=""></a><br></p>
+                                                <p style="text-align: center;"><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}"><img alt="" src="{{ asset(['uploads/', subCategory.picture] | join | apply_filter('thumbnail_category')) }}" class=""></a><br></p>
                                                 <p>{{ subCategory.shortText| raw }}</p>
                                             </div>
 
@@ -72,21 +72,31 @@
                                         {% endfor %}
                                     </div>
                                 {% else %}
-                                    {# des articles dont on affiche la liste #}
-                                    {% for article in articles %}
-                                        {% include 'JohnSiteBundle:Article:articleListType.html.twig' with {'article' : article }  %}
+                                    <div style="display:inline-block; width:600px; vertical-align: top;">
+                                        {# des articles dont on affiche la liste #}
+                                        {% for article in articles %}
+                                            {% include 'JohnSiteBundle:Article:articleListType.html.twig' with {'article' : article }  %}
 
-                                        {% if loop.index != loop.last %}
-                                            <div class="separation"></div>
-                                        {% endif %}
-                                    {% endfor %}
-                                    <div class="clear"></div>
-                                    {{ knp_pagination_render(articles) }}
+                                            {% if loop.index != loop.last %}
+                                                <div class="separation"></div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <div class="clear"></div>
+                                        {{ knp_pagination_render(articles) }}
+                                    </div>
+                                    <div style="display:inline-block; vertical-align: top; border-left: 1px solid #E0E0E0;">
                                     {# et des sous catégories qui apparaissent dans la colonne de droite #}
-                                    COLONNE DE DROITE:
-                                    {% for subCategory in subCategories %}
-                                        <a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a>
-                                    {% endfor %}
+                                        <div class="postcontent postcontent-0 clearfix">
+                                            <header>
+                                                <h2 style="color:#1F69AF; margin-bottom:0; margin-left:10px; font-size:15px">Sous catégories:</h2>
+                                            </header>
+                                            <ul>
+                                                {% for subCategory in subCategories %}
+                                                    <li><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
                                 {% endif %}
                             {% endif %}
 {#                          </div>#}

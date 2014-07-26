@@ -42,27 +42,6 @@ class ArticleAdminController extends Controller
     }
 
     /**
-     * Finds and displays a Article entity.
-     *
-     * @Route("/{id}/show", name="article_admin_show")
-     * @Template("JohnAdminBundle:ArticleAdmin:show.html.twig")
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('JohnAdminBundle:Article')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Article entity.');
-        }
-
-        return array(
-            'article' => $entity,
-        );
-    }
-
-    /**
      * Displays a form to create a new Article entity.
      *
      * @Route("/new/{id}/{type}", name="article_admin_new")

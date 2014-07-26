@@ -1,40 +1,14 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-
 <div class="sheet clearfix">
     <div class="layout-wrapper">
         <div class="content-layout">
             <div class="content-layout-row">
                 <div class="layout-cell content">
                     <article class="post article">
-                        
-                  {#      <h5>COLONNE DE DROITE:</h5>
-                        
-                        <h3>{{ subCategory.category.title }}</h3>
-                        {% if subCategory.category.subCategories is defined  and subCategory.category.subCategories is not empty %}
-                                <ul>
-                                    {% for subCategory in subCategory.category.subCategories %}
-                                        <li>
-                                            <a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a>
-                                            {% if subCategory.articles is defined and subCategory.articles is not empty %}  
-                                                <ul>
-                                                     {% for article in subCategory.articles %}
-                                                       <!--  <li><a href="{{ path('article_show', { 'slug': article.slug }) }}">{{ article.title }}</a></li>  -->
-                                                       <li><a href="{{subCategory.slug}}#{{article.slug}}">{{ article.title }}</a></li>
-                                                     {% endfor %}
-                                                </ul>
-                                            {% endif %}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                         {% endif %}
-                        #}
-                        
                         <div class="postcontent postcontent-0 clearfix">
                             <p><a href="{{ path('homepage') }}">Accueil</a> > <a href="{{ path('category_show', { 'slug': subCategory.category.slug }) }}">{{ subCategory.category.title }}</a> > {{ subCategory.title }} </p>
-
-                            <br/>
 
                             <h1 class="h1-left">{{ subCategory.title }}</h1>
                             <div style="margin-top:10px">

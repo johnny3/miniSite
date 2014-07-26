@@ -2,7 +2,7 @@
 
 {% block body_admin -%}
 
-    <h2>Category list</h2>
+    <h2>{{ entity.title }}</h2>
 
     <div class="clear"></div> <!-- End .clear -->
     <div class="content-box"><!-- Start Content Box -->
@@ -34,13 +34,14 @@
                     
                     <br/>
 
-                    <table class="action-button-table">
+                    <table class="action-button-table-create-article">
                         <tbody>
                             <tr>
                                 <td>
                                     Actions possibles: 
                                     <span class="edit"><a href="{{ path('category_admin_edit', { 'id': entity.id }) }}" title="Edit"><img src="{{ asset('bundles/johnadmin/images/icons/pencil.png') }}" alt="Edit" /></a></span>
                                     <span class="action-delete"><a href="{{ path('category_admin_delete', { 'id': entity.id }) }}" title="Delete" onclick="return confirm('Are you sure you want to delete the item {{ entity }} ?')"><img src="{{ asset('bundles/johnadmin/images/icons/cross.png') }}" alt="Delete" /></a></span>
+                                    <span class="action-delete"><a href="{{ path('article_admin_new', { 'id': entity.id, 'type': 'category' }) }}" title="create">Créer article</a></span>
                                 </td>
                             </tr>
                         </tbody>
