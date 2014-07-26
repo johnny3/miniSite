@@ -75,11 +75,6 @@
                     </p>
 
                     <p>
-                        {{ form_label(form.video, 'Url Vidéo') }}
-                        {{ form_widget(form.video, { 'attr': {'class': 'text-input large-input'} })  }} {% if form_errors(form.video) %}<span class="input-notification error png_bg">{{ form_errors(form.video) }}</span> {% endif %}
-                    </p>   
-
-                    <p>
                         {{ form_label(form.isVisible, 'Visible sur le site ?') }}
                         (Etat Actuel: {% if entity.isVisible %}OUI{% else %}NON{% endif %})<br/>
                         {{ form_widget(form.isVisible) }} {% if form_errors(form.isVisible) %}<span class="input-notification error png_bg">{{ form_errors(form.isVisible) }}</span> {% endif %}

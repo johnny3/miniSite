@@ -26,7 +26,8 @@ class CategoryAdminController extends Controller {
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('JohnAdminBundle:Category')->getCategoryOrSubCategoryWithArticles();
+        $withContact = false;
+        $entities = $em->getRepository('JohnAdminBundle:Category')->getVisibleCategories($withContact);
 
         return array(
             'entities' => $entities,
@@ -43,7 +44,7 @@ class CategoryAdminController extends Controller {
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('JohnAdminBundle:Category')->findAll();
+        $entities = $em->getRepository('JohnAdminBundle:Category')->getCategoriesByPosition();
 
         return array(
             'entities' => $entities,
@@ -187,7 +188,7 @@ class CategoryAdminController extends Controller {
             } elseif ($isPictureValueForm && NULL === $entity->getPicture() && !empty($fileValueForm)) {
                 $entity->uploadProfilePicture();
             } elseif ($isPictureValueForm && NULL === $entity->getPicture() && empty($fileValueForm)) {
-                $this->get('session')->getFlashBag()->add('notice', 'Vous avez indiqué avoir une image principale mais n\'en avez pas sélectionnée.');
+                $this->get('session')->getFlashBag()->add('error', 'Vous avez indiqué avoir une image principale mais n\'en avez pas sélectionnée.');
                 return $this->redirect($this->generateUrl('category_admin_edit', array('id' => $id)));
             } else {
                 $entity->setPicture(NULL);

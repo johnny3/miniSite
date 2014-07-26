@@ -13,9 +13,20 @@
                                 {% else %} 
                                     <p><a href="{{ path('homepage') }}">Accueil</a> > <a href="{{ path('category_show', { 'slug': article.category.slug }) }}">{{ article.category.title }}</a> > {{ article.title }}</p>
                                 {% endif %}
-
-                            {% include 'JohnSiteBundle:Article:article.html.twig' with {'article' : article} %}    
-
+                            </div>
+                            <h2 class="postheader">{{ article.title }}</h2>
+                            <header>
+                                <time datetime="{{article.updatedAt|date("Y-m-dTH:i:s")}}" pubdate>
+                                    {% if article.createdAt == article.updatedAt %}
+                                        Publié le {{ article.createdAt | localizeddate('full', 'none') }}
+                                    {% else %}
+                                        Mis à jour le {{ article.updatedAt | localizeddate('full', 'none') }}
+                                    {% endif %}
+                                </time>
+                            </header>
+                            <div class="postcontent postcontent-0 clearfix">
+                                <p><img width="305" height="3" alt="" src="{{ asset('bundles/johnsite/images/line.jpg') }}" style="margin:0;"></p>
+                                {% include 'JohnSiteBundle:Article:article.html.twig' with {'article' : article} %}
                             </div>
                         </article>
                     </div>

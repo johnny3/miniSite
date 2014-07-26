@@ -26,11 +26,18 @@ class ArticleAdminController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('JohnAdminBundle:Article')->findAllBySubCategoryASCAndTitleASC();
 
-        $entities = $em->getRepository('JohnAdminBundle:Article')->findAllBySubCategoryASCAndTitleASC();
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $query, $this->get('request')->query->get('page', 1)/* page number */, 20/* limit per page */
+        );
+
+        $totalPages = ceil($pagination->getTotalItemCount() / $pagination->getItemNumberPerPage());
 
         return array(
-            'entities' => $entities,
+            'totalPages' => $totalPages,
+            'pagination' => $pagination,
         );
     }
 

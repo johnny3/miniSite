@@ -37,60 +37,17 @@
                             <br/>
 
                             <h1 class="h1-left">{{ subCategory.title }}</h1>
-
-                        {#
-                        <table class="record_properties">
-                            <tbody>
-                                <tr>
-                                    <th>Id</th>
-                                    <td>{{ subCategory.id }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Createdat</th>
-                                    <td>{{ subCategory.createdAt|date('Y-m-d H:i:s') }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Updatedat</th>
-                                    <td>{{ subCategory.updatedAt|date('Y-m-d H:i:s') }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Slug</th>
-                                    <td>{{ subCategory.slug }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Title</th>
-                                    <td>{{ subCategory.title }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Picture</th>
-                                    <td>{{ subCategory.picture }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Shorttext</th>
-                                    <td>{{ subCategory.shortText }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Metatitle</th>
-                                    <td>{{ subCategory.metaTitle }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Metadescription</th>
-                                    <td>{{ subCategory.metaDescription }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        #}
-
                             <div style="margin-top:10px">
                             {% if articles is defined and articles is not empty %}
-                                        {% for article in articles %}
-                                             {% include 'JohnSiteBundle:Article:articleList.html.twig' with {'article' : article }  %}
+                                {% for article in articles %}
+                                    {% include 'JohnSiteBundle:Article:articleListType.html.twig' with {'article' : article }  %}
 
-                                             {% if loop.index != loop.last %}
+                                    {% if loop.index != loop.last %}
                                     <div class="separation"></div>
-                                             {% endif %}
-                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="clear"></div>
+                                {{ knp_pagination_render(articles) }}
                             {% endif %}
                                 </div>
                             </div>

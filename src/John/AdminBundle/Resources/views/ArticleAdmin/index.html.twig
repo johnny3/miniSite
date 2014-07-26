@@ -1,46 +1,75 @@
 {% extends "::baseAdmin.html.twig" %}
 
-{% block body_admin %}
+{% block body_admin -%}
 
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Categorie</th>
-            <th>Sous-categorie</th>
-            <th>Titre</th>
-            <th>Créé le</th>
-            <th>Mis à jour le</th>
-            <th>Publié</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td>
-                    {% if entity.subcategory is defined 
+    <h2>Article list</h2>
+
+    <div class="clear"></div> <!-- End .clear -->
+    <div class="content-box"><!-- Start Content Box -->
+        <div class="content-box-header">
+
+            <ul class="content-box-tabs">
+                <li><a href="#tab1" class="default-tab">Table</a></li> <!-- href must be unique and match the id of target div -->
+            </ul>
+
+            <div class="clear"></div>
+
+        </div> <!-- End .content-box-header -->
+
+        <div class="content-box-content">
+            <div class="tab-content default-tab" id="tab1">
+                <div class="bulk-actions align-left">
+                    <p>Page {{pagination.getCurrentPageNumber}}/{{totalPages}} ({{pagination.getTotalItemCount}} articles)</p>
+                </div>
+                <div class="clear"></div>
+                <table class="record_properties">
+                    <thead>
+                    <th>Categorie</th>
+                    <th>Sous-categorie</th>
+                    <th>Titre</th>
+                    <th>Créé le</th>
+                    <th>Mis à jour le</th>
+                    <th>Publié</th>
+                    <th>Actions</th>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td colspan="10">
+                                {{ knp_pagination_render(pagination) }}
+                                <div class="clear"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for entity in pagination %}
+                            <tr>
+                                <td>
+                                    {% if entity.subcategory is defined 
                        and entity.subcategory is null %}
-                        {{ entity.category }}
-                    {% elseif entity.subcategory is defined 
+                                    {{ entity.category }}
+                                    {% elseif entity.subcategory is defined 
                        and entity.subcategory is not null %}
-                        {{ entity.subcategory.category.title }}
-                    {% endif %}
-                </td>
-                <td>{% if entity.subcategory is defined 
+                                    {{ entity.subcategory.category.title }}
+                                    {% endif %}
+                                    </td>
+                                    <td>{% if entity.subcategory is defined 
                        and entity.subcategory is not null %}
-                        {{ entity.subcategory.title }}
-                    {% endif %}
-                    </td>
-                <td>{{ entity.title }}</td>
-                <td>{{ entity.createdAt|date('d-m-Y') }}</td>
-                <td>{{ entity.updatedAt|date('d-m-Y') }}</td>
-                <td>{% if entity.isVisible %}OUI{% else %}NON{% endif %}</td>
-                <td>
-                    <a href="{{ path('article_admin_edit', { 'id': entity.id }) }}" title="Edit"><img src="{{ asset('bundles/johnadmin/images/icons/pencil.png') }}" alt="Edit" /></a>
-                    <a href="{{ path('article_admin_delete', { 'id': entity.id }) }}" title="Delete" class="action-delete" onclick="return confirm('Are you sure you want to delete the category {{ entity }} ?')"><img src="{{ asset('bundles/johnadmin/images/icons/cross.png') }}" alt="Delete" /></a> 
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% endblock %} 
+                                        {{ entity.subcategory.title }}
+                                        {% endif %}
+                                        </td>
+                                        <td>{{ entity.title }}</td>
+                                        <td>{{ entity.createdAt|date('d-m-Y') }}</td>
+                                        <td>{{ entity.updatedAt|date('d-m-Y') }}</td>
+                                        <td>{% if entity.isVisible %}OUI{% else %}NON{% endif %}</td>
+                                        <td>
+                                            <a href="{{ path('article_admin_edit', { 'id': entity.id }) }}" title="Edit"><img src="{{ asset('bundles/johnadmin/images/icons/pencil.png') }}" alt="Edit" /></a>
+                                            <a href="{{ path('article_admin_delete', { 'id': entity.id }) }}" title="Delete" class="action-delete" onclick="return confirm('Are you sure you want to delete the category {{ entity }} ?')"><img src="{{ asset('bundles/johnadmin/images/icons/cross.png') }}" alt="Delete" /></a> 
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> <!-- End .content-box-content -->
+                    </div> <!-- End .content-box -->
+                    {% endblock %}

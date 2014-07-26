@@ -18,32 +18,42 @@
 
     <div class="content-box-content">
         <div class="tab-content default-tab" id="tab1">
-            <div class="bulk-actions align-left">
-{#                <p>Page {{pagination.getCurrentPageNumber}}/{{totalPages}} ({{pagination.getTotalItemCount}} entries)</p>#}
-            </div>
             <div class="clear"></div>
             <table class="record_properties">
                 <thead>
                     <tr>
                         <th>Titre</th>
                         <th>Position</th>
+                        <th>Nb Articles</th>
+                        <th>Sous Catégories</th>
                         <th>Type de catégorie</th>
+                        <th>Publié</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <td colspan="6">
-{#                            {{ knp_pagination_render(pagination) }}#}
-                            <div class="clear"></div>
-                        </td>
-                    </tr>
-                </tfoot>
                 <tbody>
                     {% for entity in entities %}
                         <tr>
                             <td>{{ entity.title }}</td>
                             <td>{{ entity.position }}</td>
+                            <td>{{ entity.articles | length }}</td>
+                            <td>
+                                {% if ((entity.subCategories | length) > 0) %}
+                                    <ul>
+                                        {% for subCategory in entity.subCategories %}
+                                            {% set counter = 0 %}
+                                            {% if ((subCategory.articles | length) > 0) %}
+                                                {% for article in subCategory.articles %}
+                                                    {% if article.isVisible == true %}
+                                                        {% set counter = counter + 1 %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                            <li>{{ subCategory.title }} ({{ counter }} article(s) publié(s))</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </td>
                             <td>
                                 {% if entity.contactCat %}
                                         Contact
@@ -51,6 +61,7 @@
                                         Classique
                                 {% endif %}
                             </td>
+                            <td>{% if entity.isVisible %}OUI{% else %}NON{% endif %}</td>
                             <td>
                                 <a href="{{ path('category_admin_edit', { 'id': entity.id }) }}" title="Edit"><img src="{{ asset('bundles/johnadmin/images/icons/pencil.png') }}" alt="Edit" /></a>
                                 <a href="{{ path('category_admin_delete', { 'id': entity.id }) }}" title="Delete" class="action-delete" onclick="return confirm('Are you sure you want to delete the category {{ entity }} ?')"><img src="{{ asset('bundles/johnadmin/images/icons/cross.png') }}" alt="Delete" /></a> 

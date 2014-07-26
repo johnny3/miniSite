@@ -90,13 +90,6 @@ class Article {
     private $isPicture;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="video", type="string", length=255, nullable=true)
-     */
-    private $video;
-
-    /**
      * @ORM\ManyToOne(targetEntity="John\AdminBundle\Entity\Category", inversedBy="articles")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -305,29 +298,6 @@ class Article {
     public function getPicture()
     {
         return $this->picture;
-    }
-
-    /**
-     * Set video
-     *
-     * @param string $video
-     * @return Article
-     */
-    public function setVideo($video)
-    {
-        $this->video = $video;
-
-        return $this;
-    }
-
-    /**
-     * Get video
-     *
-     * @return string 
-     */
-    public function getVideo()
-    {
-        return $this->video;
     }
 
     /**

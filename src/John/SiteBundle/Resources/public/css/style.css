@@ -108,7 +108,7 @@ ul.vmenu a
 {
     font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
     text-decoration: none;
-    color: #70BAFF;
+    color: #1F69AF;
 }
 
 .postcontent  a:hover, .postcontent a.hover
@@ -296,6 +296,11 @@ body
     margin:0;
     min-width: 880px;
     color: #445D64;
+}
+
+.clear
+{
+    clear: both;
 }
 
 .header:before, #header-bg:before, .layout-cell:before, .layout-wrapper:before, .footer:before, .nav:before, #hmenu-bg:before, .sheet:before
@@ -1634,6 +1639,31 @@ label.radiobutton.hovered:before
 
 .pager>*:last-child:after{
     display:none;
+}
+
+.pagination {
+    padding: 15px 0 5px 0;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+
+.pagination a {
+    margin: 0 5px 0 0;
+    padding: 3px 6px;
+}
+
+.pagination a.number {
+    border: 1px solid #ddd;
+}
+
+.pagination a.current {
+    background: #3360AF url('../images/bg-button-green.gif') top left repeat-x !important;
+    border-color: #3360AF !important;
+    color: #fff !important;
+}
+
+.pagination a.current:hover {
+    text-decoration: underline;
 }
 
 .commentsform

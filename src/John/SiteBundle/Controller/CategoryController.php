@@ -13,8 +13,8 @@ use John\AdminBundle\Entity\Category;
  *
  * @Route("/category")
  */
-class CategoryController extends Controller {
-
+class CategoryController extends Controller
+{
     /**
      * Finds and displays a Category entity.
      *
@@ -28,6 +28,10 @@ class CategoryController extends Controller {
 
         $category = $em->getRepository('JohnAdminBundle:Category')->findOneBySlug($slug);
 
+        if (!$category) {
+            throw $this->createNotFoundException('Unable to find Category entity.');
+        }
+
         $articles = $this->getDoctrine()
                 ->getRepository('JohnAdminBundle:Article')
                 ->getArticlesByCategory($category);
@@ -35,40 +39,50 @@ class CategoryController extends Controller {
         $subCategories = $this->getDoctrine()
                 ->getRepository('JohnAdminBundle:SubCategory')
                 ->getSubCategoriesByCategory($category);
-        
-        if (!$category) {
-            throw $this->createNotFoundException('Unable to find Category entity.');
-        }
 
-        // on affiche simplement le titre et le body de la catégorie
-        if (!$subCategories && !$articles) {
-            return array(
-                'category' => $category
-            );
-        }
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $articles, $this->get('request')->query->get('page', 1)/* page number */, 6/* limit per page */
+        );
 
-        // la catégorie en elle-même ne contient pas d'articles, 
-        // mais est composée de sous-catégories
-        elseif ($subCategories && !$articles) {
-            return array(
-                'category' => $category,
-                'subCategories' => $subCategories
-            );
+        $totalPages = ceil($pagination->getTotalItemCount() / $pagination->getItemNumberPerPage());
+
+        if (!$subCategories) {
+            // la catégorie n'a pas d'articles, on affiche son titre et son body
+            if (!$articles) {
+                return array(
+                    'category' => $category
+                );
+            }
+            // la catégorie a des articles, on affiche sa liste paginée d'articles
+            else {
+                return array(
+                    'totalPages' => $totalPages,
+                    'category' => $category,
+                    'articles' => $pagination
+                );
+            }
+        } else {
+            // la catégorie n'a pas d'articles, donc on retourne simplement ses sous catégories
+            if (!$articles) {
+                return array(
+                    'category' => $category,
+                    'subCategories' => $subCategories
+                );
+            }
+            // la catégorie a des articles
+            else {
+                return array(
+                    'category' => $category,
+                    'subCategories' => $subCategories,
+                    'articles' => $pagination,
+                    'totalPages' => $totalPages
+                );
+            }
         }
-        
-        // la catégorie en elle-même contient des articles, 
-        // mais n'a aucune sous-catégorie
-        elseif (!$subCategories && $articles) {
-            return array(
-                'category' => $category,
-                'articles' => $articles,
-            );
-        } 
 
         return array(
-            'category' => $category,
-            'articles' => $articles,
-            'subCategories' => $subCategories
+            'category' => $category
         );
     }
 

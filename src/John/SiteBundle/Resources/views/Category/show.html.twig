@@ -1,164 +1,99 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+    <div class="sheet clearfix">
+        <div class="layout-wrapper">
+            <div class="content-layout">
+                <div class="content-layout-row">
+                    <div class="layout-cell content">
+                        <article class="post article">
+                            <div class="postcontent postcontent-0 clearfix">
+                              <p><a href="{{ path('homepage') }}">Accueil</a> > {{ category.title }}</p>
+                            </div>
+                            {# pas de sous catégorie #}
+                            {% if subCategories is not defined %}
+                                {# pas d'articles #}
+                                {% if articles is not defined %}
+                                    {# on affiche le contenu de la catégorie #}
+                                    <h2 class="postheader">{{ category.title }}</h2>
+                                    <div class="postcontent postcontent-0 clearfix">
+                                        <p><img width="305" height="3" alt="" src="{{ asset('bundles/johnsite/images/line.jpg') }}" style="margin:0;"></p>
+                                        {% include 'JohnSiteBundle:Article:article.html.twig' with {'article' : category} %}
+                                    </div>
+                                {% else %}
+                                    {# des articles dont on affiche la liste #}
+                                    {% for article in articles %}
+                                        {% include 'JohnSiteBundle:Article:articleListType.html.twig' with {'article' : article }  %}
 
-<div class="sheet clearfix">
-    <div class="layout-wrapper">
-        <div class="content-layout">
-            <div class="content-layout-row">
-                <div class="layout-cell content">
-                    <article class="post article">
-                        <div class="postcontent postcontent-0 clearfix">
-                            <p><a href="{{ path('homepage') }}">Accueil</a> > {{ category.title }}</p>
-
-                    {% if subCategories is not defined %}
-                            <h1 class="h1-left">{{ category.title }}</h1>
-                    {% endif %}
-                        {#
-                            <table class="record_properties">
-                                <tbody>
-                                    <tr>
-                                        <th>Id</th>
-                                        <td>{{ category.id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Createdat</th>
-                                        <td>{{ category.createdAt|date('Y-m-d H:i:s') }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Updatedat</th>
-                                        <td>{{ category.updatedAt|date('Y-m-d H:i:s') }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Slug</th>
-                                        <td>{{ category.slug }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Title</th>
-                                        <td>{{ category.title }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Picture</th>
-                                        <td>{{ category.picture }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Shorttext</th>
-                                        <td>{{ category.shortText }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Metatitle</th>
-                                        <td>{{ category.metaTitle }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Metadescription</th>
-                                        <td>{{ category.metaDescription }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Tags</th>
-                                        <td>{{ category.tags }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        #}
-
-                        {% if subCategories is defined and subCategories is not empty %}
-
-                         {#   <h1>SubCategories</h1>
-
-                            <table>
-                                <tbody> #}
-                                        {% for subCategory in subCategories %}
-
-                                {% if loop.first %}
-                                    {# on ouvre les div au premier tour de boucle #}
-                            <div class="content-layout-wrapper">
-                                <div class="content-layout layout-item-3">
-                                    <div class="content-layout-row">
+                                        {% if loop.index != loop.last %}
+                                            <div class="separation"></div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <div class="clear"></div>
+                                    {{ knp_pagination_render(articles) }}
                                 {% endif %}
+                            {% else %}
+                            {# au moins une sous catégorie #}
+                                {# pas d'articles #}
+                                {% if articles is not defined %}
+                                    {# on affiche les sous catégories visibles #}
+                                    <div class="postcontent postcontent-0 clearfix">
+                                        {% for subCategory in subCategories %}
+                                            {% if loop.first %}
+                                                {# on ouvre les div au premier tour de boucle #}
+                                                <div class="content-layout-wrapper">
+                                                    <div class="content-layout layout-item-3">
+                                                        <div class="content-layout-row">
+                                            {% endif %}
 
-                                                {# on affiche les informations de la catégorie #}    
+                                            {# on affiche les informations de la sous catégorie #}    
                                             <div class="layout-cell {% if loop.index is divisibleby(3) %}layout-item-7{% else %}layout-item-5{% endif %}" style="width: 33%" >
                                                 <h1><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a></h1>
                                                 <p style="text-align: center;"><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}"><img alt="" src="{{ asset(['bundles/johnsite/images/', subCategory.picture] | join | apply_filter('thumbnail_category')) }}" class=""></a><br></p>
                                                 <p>{{ subCategory.shortText| raw }}</p>
                                             </div>
 
-                                {% if loop.index is divisibleby(3) %}
-                                {# on ferme les div toutes les 3 catégories #}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                    {# on place la barre de séparation #}
-                                <div class="separation"></div>
-
-                                         {% if loop.index != loop.last %}
-                                    {# on ouvre les div tant que l'on n'a pas atteint la dernière itération #}
-                                <div class="content-layout-wrapper">
-                                    <div class="content-layout layout-item-3">
-                                        <div class="content-layout-row">
-                                         {% endif %}
-                                {% endif %}     
-
-                        {# 
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <td>{{ subCategory.id }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Createdat</th>
-                                                        <td>{{ subCategory.createdAt|date('Y-m-d H:i:s') }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Updatedat</th>
-                                                        <td>{{ subCategory.updatedAt|date('Y-m-d H:i:s') }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Slug</th>
-                                                        <td>{{ subCategory.slug }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Title</th>
-                                                        <td><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Picture</th>
-                                                        <td>{{ subCategory.picture }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Shorttext</th>
-                                                        <td>{{ subCategory.shortText }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Metatitle</th>
-                                                        <td>{{ subCategory.metaTitle }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Metadescription</th>
-                                                        <td>{{ subCategory.metaDescription }}</td>
-                                                    </tr>#}
-                                            {% endfor %}
-
-                          {#    </tbody>
-                            </table>#}
-                        {% endif %}
-                                                <div style="margin-top:10px">
-                                {% if articles is defined and articles is not empty %}  
-
-                                    {% for article in articles %}
-                                            {% include 'JohnSiteBundle:Article:articleList.html.twig' with {'article' : article }  %}
-
-                                            {% if loop.index != loop.last %}
-                                                        <div class="separation"></div>
-                                            {% endif %}
-                                    {% endfor %}
-                                 {% endif %}
+                                            {% if loop.index is divisibleby(3) %}
+                                                        {# on ferme les div toutes les 3 sous catégories #}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                </article>
-                                            </div>
-                                        </div>
+
+                                                {# on place la barre de séparation horizontale #}
+                                                <div class="separation"></div>
+
+                                                {% if loop.index != loop.last %}
+                                                    {# on ouvre les div tant que l'on n'a pas atteint la dernière itération #}
+                                                    <div class="content-layout-wrapper">
+                                                        <div class="content-layout layout-item-3">
+                                                            <div class="content-layout-row">
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
-                            </div>
-                        </div>
+                                {% else %}
+                                    {# des articles dont on affiche la liste #}
+                                    {% for article in articles %}
+                                        {% include 'JohnSiteBundle:Article:articleListType.html.twig' with {'article' : article }  %}
+
+                                        {% if loop.index != loop.last %}
+                                            <div class="separation"></div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <div class="clear"></div>
+                                    {{ knp_pagination_render(articles) }}
+                                    {# et des sous catégories qui apparaissent dans la colonne de droite #}
+                                    COLONNE DE DROITE:
+                                    {% for subCategory in subCategories %}
+                                        <a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endif %}
+{#                          </div>#}
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

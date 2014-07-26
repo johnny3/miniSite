@@ -1,0 +1,23 @@
+<div class="postcontent postcontent-0 clearfix">
+    <article>
+        <header>
+            <h2 id="{{article.slug}}"><a href="{{ path('article_show', {"slug": article.slug}) }}">{{ article.title | capitalize }}</a></h2>
+            <time datetime="{{article.updatedAt|date("Y-m-dTH:i:s")}}" pubdate>
+                {% if article.createdAt == article.updatedAt %}
+                    Publié le {{ article.createdAt | localizeddate('full', 'none') }}
+                {% else %}
+                    Mis à jour le {{ article.updatedAt | localizeddate('full', 'none') }}
+                {% endif %}
+            </time>
+        </header>
+
+        <div class="description">
+               {% if article.picture is not empty %}
+                    <a href="{{ path('article_show', {"slug": article.slug}) }}">
+                        <img src="{{ asset(['bundles/johnsite/images/', article.picture]|join|apply_filter('thumbnail_articlelist')) }}"  alt="" class="image"/>
+                    </a>
+               {% endif %}
+               {{ article.body| truncate(200, true, ' [...]') | raw  }}
+        </div>
+    </article>
+</div>

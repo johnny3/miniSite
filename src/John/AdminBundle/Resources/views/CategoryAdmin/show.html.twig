@@ -25,8 +25,9 @@
                         {% set type = 'Classique' %}
                     {% endif %}
 
-                    <p><span class="souligne-gras">Position:</span> {{ entity.position }}</p>
                     <p><span class="souligne-gras">Type de catégorie:</span> {{ type }}</p>
+                    <p><span class="souligne-gras">Position:</span> {{ entity.position }}</p>
+                    <p><span class="souligne-gras">Est publié:</span> {% if entity.isVisible %}OUI{% else %}NON{% endif %}</p>
 
                     {% include 'JohnSiteBundle:Article:article.html.twig' with {'article' : entity} %}
                     <p>{{ entity.shortText | raw }}</p>

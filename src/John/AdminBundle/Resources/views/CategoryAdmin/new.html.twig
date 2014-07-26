@@ -72,6 +72,12 @@
                             {{ form_label(form.contactCat, 'Catégorie de type formulaire de contact ?') }}
                             {{ form_widget(form.contactCat) }} {% if form_errors(form.contactCat) %}<span class="input-notification error png_bg">{{ form_errors(form.contactCat) }}</span> {% endif %}
                         </p>
+                        
+                        <p>
+                            {{ form_label(form.isVisible, 'Visible sur le site ?') }}
+                            (Etat Actuel: {% if entity.isVisible %}OUI{% else %}NON{% endif %})<br/>
+                            {{ form_widget(form.isVisible) }} {% if form_errors(form.isVisible) %}<span class="input-notification error png_bg">{{ form_errors(form.isVisible) }}</span> {% endif %}
+                        </p>
                     </div>
 
                     {{ form_rest(form) }}

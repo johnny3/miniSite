@@ -24,7 +24,6 @@ class ArticleType extends AbstractType
                         'data-theme' => 'advanced' // simple, advanced, bbcode
             )))
                 ->add('file')
-                ->add('video')
                 ->add('isVisible')
                 ->add('isPicture', 'checkbox', array('data' => true))
                 ->add('category')

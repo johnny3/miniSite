@@ -31,20 +31,30 @@ class SubCategoryController extends Controller {
         $articlesBySubCategory = $this->getDoctrine()
                 ->getRepository('JohnAdminBundle:Article')
                 ->getArticlesBySubCategory($subCategory);
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $articlesBySubCategory, $this->get('request')->query->get('page', 1)/* page number */, 6/* limit per page */
+        );
+
+        $totalPages = ceil($pagination->getTotalItemCount() / $pagination->getItemNumberPerPage());
 
         if (!$subCategory) {
             throw $this->createNotFoundException('Unable to find SubCategory entity.');
         }
 
+        // pas d'articles, on affiche son titre et son body
         if (!$articlesBySubCategory) {
             return array(
                 'subCategory' => $subCategory,
             );
         }
 
+        // sinon, on retourne sa liste paginée d'articles
         return array(
             'subCategory' => $subCategory,
-            'articles' => $articlesBySubCategory,
+            'articles' => $pagination,
+            'totalPages' => $totalPages
         );
     }
     

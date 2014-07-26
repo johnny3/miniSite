@@ -18,7 +18,8 @@ class HomepageController extends Controller {
     {
         $manager = $this->getDoctrine()
                 ->getManager();
-        $categoriesWithArticles = $manager->getRepository('JohnAdminBundle:Category')->getCategoryOrSubCategoryWithArticles();
+        $withContact = false;
+        $categoriesWithArticles = $manager->getRepository('JohnAdminBundle:Category')->getVisibleCategories($withContact);
 
 
 //        foreach ($categories as $category) {

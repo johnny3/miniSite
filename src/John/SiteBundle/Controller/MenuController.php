@@ -10,11 +10,14 @@ class MenuController extends Controller {
     {
         $manager = $this->getDoctrine()
                 ->getManager();
-        $categoriesWithArticles = $manager->getRepository('JohnAdminBundle:Category')->getCategoryOrSubCategoryWithArticles();
+        $withContact = true;
+        $categoriesWithArticles = $manager->getRepository('JohnAdminBundle:Category')->getVisibleCategories($withContact);
+        $contactCat = $manager->getRepository('JohnAdminBundle:Category')->getContactCategory();
 
         return $this->container->get('templating')
                         ->renderResponse('JohnSiteBundle:Menu:menu.html.twig', array(
-                            'categoriesWithArticles' => $categoriesWithArticles
+                            'categoriesWithArticles'    => $categoriesWithArticles,
+                            'contactCat'                => $contactCat
                                 )
         );
     }

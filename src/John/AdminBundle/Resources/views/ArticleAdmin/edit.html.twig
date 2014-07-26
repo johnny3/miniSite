@@ -70,14 +70,6 @@
                     </p>
 
                     <p>
-                        {{ form_label(edit_form.video, 'Url Vidéo') }}
-                        {% if entity.video is defined and entity.video is not null %}
-                        <p>{{ entity.video }}</p>
-                    {% endif %}
-                    {{ form_widget(edit_form.video, { 'attr': {'class': 'text-input large-input'} })  }} {% if form_errors(edit_form.video) %}<span class="input-notification error png_bg">{{ form_errors(edit_form.video) }}</span> {% endif %}
-                    </p>   
-
-                    <p>
                         {{ form_label(edit_form.isVisible, 'Visible sur le site ?') }}
                         (Etat Actuel: {% if entity.isVisible %}OUI{% else %}NON{% endif %})<br/>
                         {{ form_widget(edit_form.isVisible) }} {% if form_errors(edit_form.isVisible) %}<span class="input-notification error png_bg">{{ form_errors(edit_form.isVisible) }}</span> {% endif %}
