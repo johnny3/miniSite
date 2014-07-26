@@ -8,18 +8,27 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ArticleType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('slug')
-            ->add('title')
-            ->add('body')
-            ->add('picture')
-            ->add('video')
-            ->add('category')
-            ->add('subCategory')
+                ->add('title', 'text')
+                ->add('chapo', 'textarea', array(
+                    'attr' => array(
+                        'class' => 'tinymce',
+                        'data-theme' => 'simple' // simple, advanced, bbcode
+            )))
+                ->add('body', 'textarea', array(
+                    'attr' => array(
+                        'class' => 'tinymce',
+                        'data-theme' => 'advanced' // simple, advanced, bbcode
+            )))
+                ->add('file')
+                ->add('video')
+                ->add('isVisible')
+                ->add('isPicture', 'checkbox', array('data' => true))
+                ->add('category')
+                ->add('subCategory')
         ;
     }
 
@@ -34,4 +43,5 @@ class ArticleType extends AbstractType
     {
         return 'john_adminbundle_articletype';
     }
+
 }

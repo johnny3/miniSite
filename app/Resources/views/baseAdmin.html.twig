@@ -48,14 +48,14 @@
             <div id="sidebar">
                 <div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->
                     <!-- Logo (221px wide) -->
-                    <a href="#"><img id="logo" style="width:210px" src="{{ asset('bundles/johnadmin/images/logo.png') }}" alt="Simpla Admin logo" /></a>
+                    <a href="{{ path('homepage_admin') }}"><img id="logo" style="width:210px" src="{{ asset('bundles/johnadmin/images/logo.png') }}" alt="Simpla Admin logo" /></a>
 
                     <!-- Sidebar Profile links -->
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <div id="profile-links">
                             Hello {{ app.user.username }}<br />
                             <br />
-                            <a href="{{path('fos_user_security_logout')}}" title="sign out">Sign out</a>
+                            <a href="{{path('homepage')}}" title="Voir le site" target="_blank">Voir le site</a> | <a href="{{path('fos_user_security_logout')}}" title="sign out">Sign out</a>
                         </div>
                     {% endif %}
 
@@ -82,13 +82,13 @@
                         </li>
 
                         <li>
-                            <a href="#" class="nav-top-item no-submenu {% if app.request.pathinfo|slice(7, 13) == 'article_admin' %}current{% endif %}">
+                            <a href="{{ path('article_admin') }}" class="nav-top-item no-submenu {% if app.request.pathinfo|slice(7, 13) == 'article_admin' %}current{% endif %}">
                                 Articles
                             </a>
                         </li>
 
                         <li>
-                            <a href="#" class="nav-top-item  no-submenu {% if app.request.pathinfo|slice(7, 10) == 'info_admin' %}current{% endif %}">
+                            <a href="{{ path('info_admin_edit', { 'id': 1 }) }}" class="nav-top-item  no-submenu {% if app.request.pathinfo|slice(7, 10) == 'info_admin' %}current{% endif %}">
                                 Informations du site
                             </a>
                         </li>
@@ -111,7 +111,7 @@
                         </li>
                         
                         <li>
-                            <a href="#" class="nav-top-item no-submenu {% if app.request.pathinfo|slice(7, 17) == 'admin/mail' %}current{% endif %}">
+                            <a href="{{ path('lexik_mailer.email_list') }}" class="nav-top-item no-submenu {% if app.request.pathinfo|slice(7, 17) == 'admin/mail' %}current{% endif %}">
                                 Templates des mails
                             </a>
                         </li>

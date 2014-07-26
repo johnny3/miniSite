@@ -1,5 +1,6 @@
 
 
+
 /* Z-INDEX */
  .formError { z-index: 990; }
     .formError .formErrorContent { z-index: 991; }
@@ -42,9 +43,9 @@
 
 .formError .formErrorContent {
 	width: 100%;
-	background: #ee0101;
+	background: #DCDCDC;
 	position:relative;
-	color: #fff;
+	color: #000;
 	min-width: 120px;
 	font-size: 11px;
 	border: 2px solid #ddd;
@@ -52,7 +53,7 @@
 	-moz-box-shadow: 0 0 6px #000;
 	-webkit-box-shadow: 0 0 6px #000;
 	-o-box-shadow: 0 0 6px #000;
-	padding: 4px 10px 4px 10px;
+	padding: 0px 10px 0px 10px;
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -108,7 +109,7 @@ body.rtl .formError .formErrorArrow {
 	-o-box-shadow: 0 2px 3px #444;
 	font-size: 0px;
 	height: 1px;
-	background: #ee0101;
+	background: #DCDCDC;
 	margin: 0 auto;
 	line-height: 0;
 	font-size: 0;
@@ -132,12 +133,12 @@ body.rtl .formError .formErrorArrow {
 }
 
 .formError .formErrorArrow .line10 {
-	width: 13px;
+	width: 15px;
 	border: none;
 }
 
 .formError .formErrorArrow .line9 {
-	width: 11px;
+	width: 13px;
 	border: none;
 }
 

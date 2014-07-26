@@ -28,7 +28,7 @@
                     <p><span class="souligne-gras">Position:</span> {{ entity.position }}</p>
                     <p><span class="souligne-gras">Type de catégorie:</span> {{ type }}</p>
 
-                    {% include 'JohnAdminBundle:Article:article.html.twig' with {'article' : entity} %}
+                    {% include 'JohnSiteBundle:Article:article.html.twig' with {'article' : entity} %}
                     <p>{{ entity.shortText | raw }}</p>
                     
                     <br/>

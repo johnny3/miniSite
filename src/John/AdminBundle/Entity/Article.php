@@ -4,6 +4,7 @@ namespace John\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article
@@ -40,6 +41,13 @@ class Article {
      * @ORM\Column(length=255, unique=true)
      */
     private $slug;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible", type="boolean", nullable=true)
+     */
+    private $isVisible;
 
     /**
      * @var string
@@ -47,6 +55,13 @@ class Article {
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chapo", type="text")
+     */
+    private $chapo;
 
     /**
      * @var string
@@ -61,6 +76,18 @@ class Article {
      * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     private $picture;
+
+    /**
+     * @Assert\File(maxSize="2M")
+     */
+    public $file;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_picture", type="boolean", nullable=true)
+     */
+    private $isPicture;
 
     /**
      * @var string
@@ -164,6 +191,29 @@ class Article {
     {
         return $this->slug;
     }
+    
+    /**
+     * Set isVisible
+     *
+     * @param boolean $isVisible
+     * @return Article
+     */
+    public function setIsVisible($isVisible)
+    {
+        $this->isVisible = $isVisible;
+
+        return $this;
+    }
+
+    /**
+     * Get isVisible
+     *
+     * @return boolean 
+     */
+    public function getIsVisible()
+    {
+        return $this->isVisible;
+    }
 
     /**
      * Set title
@@ -186,6 +236,29 @@ class Article {
     public function getTitle()
     {
         return $this->title;
+    }
+    
+    /**
+     * Set chapo
+     *
+     * @param string $chapo
+     * @return Article
+     */
+    public function setChapo($chapo)
+    {
+        $this->chapo = $chapo;
+
+        return $this;
+    }
+
+    /**
+     * Get chapo
+     *
+     * @return string 
+     */
+    public function getChapo()
+    {
+        return $this->chapo;
     }
 
     /**
@@ -302,5 +375,58 @@ class Article {
     {
         return $this->subCategory;
     }
+    
+    /**
+     * Set isPicture
+     *
+     * @param boolean $isPicture
+     * @return Article
+     */
+    public function setIsPicture($isPicture)
+    {
+        $this->isPicture = $isPicture;
 
+        return $this;
+    }
+
+    /**
+     * Get isPicture
+     *
+     * @return boolean 
+     */
+    public function getIsPicture()
+    {
+        return $this->isPicture;
+    }
+    
+    public function getWebPath()
+    {
+        return null === $this->picture ? null : $this->getUploadDir() . '/' . $this->picture;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire dans lequel sauvegarder les photos de profil
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'uploads';
+    }
+
+    public function uploadProfilePicture()
+    {
+        // Nous utilisons le nom de fichier original, donc il est dans la pratique
+        // nécessaire de le nettoyer pour éviter les problèmes de sécurité
+        // move copie le fichier présent chez le client dans le répertoire indiqué.
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+
+        // On sauvegarde le nom de fichier
+        $this->picture = $this->file->getClientOriginalName();
+
+        // La propriété file ne servira plus
+        $this->file = null;
+    }
 }

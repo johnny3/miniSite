@@ -1,0 +1,46 @@
+{% extends "::baseAdmin.html.twig" %}
+
+{% block body_admin %}
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Categorie</th>
+            <th>Sous-categorie</th>
+            <th>Titre</th>
+            <th>Créé le</th>
+            <th>Mis à jour le</th>
+            <th>Publié</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>
+                    {% if entity.subcategory is defined 
+                       and entity.subcategory is null %}
+                        {{ entity.category }}
+                    {% elseif entity.subcategory is defined 
+                       and entity.subcategory is not null %}
+                        {{ entity.subcategory.category.title }}
+                    {% endif %}
+                </td>
+                <td>{% if entity.subcategory is defined 
+                       and entity.subcategory is not null %}
+                        {{ entity.subcategory.title }}
+                    {% endif %}
+                    </td>
+                <td>{{ entity.title }}</td>
+                <td>{{ entity.createdAt|date('d-m-Y') }}</td>
+                <td>{{ entity.updatedAt|date('d-m-Y') }}</td>
+                <td>{% if entity.isVisible %}OUI{% else %}NON{% endif %}</td>
+                <td>
+                    <a href="{{ path('article_admin_edit', { 'id': entity.id }) }}" title="Edit"><img src="{{ asset('bundles/johnadmin/images/icons/pencil.png') }}" alt="Edit" /></a>
+                    <a href="{{ path('article_admin_delete', { 'id': entity.id }) }}" title="Delete" class="action-delete" onclick="return confirm('Are you sure you want to delete the category {{ entity }} ?')"><img src="{{ asset('bundles/johnadmin/images/icons/cross.png') }}" alt="Delete" /></a> 
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %} 

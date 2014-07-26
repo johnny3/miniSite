@@ -1,7 +1,13 @@
 {% extends "::baseAdmin.html.twig" %}
 
 {% block body_admin %}
-    <h1>SubCategory edit</h1>
+    {% if entity.category is not null %}
+       <h2>Article Creation for Category {{ entity.category }}</h2>
+    {% elseif (entity.subCategory is not null) %}
+       <h2>Article Creation for subCategory {{ entity.subCategory }}</h2>
+    {% else %}
+       <h2>Article Creation</h2>
+    {% endif %}
 
     <div class="clear"></div> <!-- End .clear -->
     <div class="content-box"><!-- Start Content Box -->
@@ -25,17 +31,21 @@
                 </div>
             {% endfor %}
 
-            <form action="{{ path('subcategory_admin_create') }}" method="post" {{ form_enctype(form) }} novalidate>
-                <div id="john_adminbundle_subcategorytype">
-                    <p>
-                        {{ form_label(form.category, 'Catégorie') }}             
-                        {{ form_widget(form.category, { 'attr': {'class': 'medium-input'} }) }}  {% if form_errors(form.category) %} <span class="input-notification error png_bg">{{ form_errors(form.category) }}</span> {% endif %}
-                    </p>
+            <form action="{{ path('article_admin_create') }}" method="post" {{ form_enctype(form) }} novalidate>
+                <div id="john_adminbundle_articletype">
+                    {% if entity.category is null and entity.subCategory is null %}
+                        <p>
+                            {{ form_label(form.category, 'Catégorie') }}             
+                            {{ form_widget(form.category, { 'attr': {'class': 'small-input'} }) }}  {% if form_errors(form.category) %} <span class="input-notification error png_bg">{{ form_errors(form.category) }}</span> {% endif %}
+                        </p>
+                    {% endif %}
 
-                    <p>
-                        {{ form_label(form.position, 'Position') }}
-                        {{ form_widget(form.position, { 'attr': {'class': 'text-input small-input'} })  }} {% if form_errors(form.position) %}<span class="input-notification error png_bg">{{ form_errors(form.position) }}</span> {% endif %}
-                    </p>
+                    {% if entity.category is null and entity.subCategory is null %}
+                        <p>
+                            {{ form_label(form.subCategory, 'Sous catégorie') }}             
+                            {{ form_widget(form.subCategory, { 'attr': {'class': 'small-input'} }) }}  {% if form_errors(form.subCategory) %} <span class="input-notification error png_bg">{{ form_errors(form.subCategory) }}</span> {% endif %}
+                        </p>
+                    {% endif %}
 
                     <p>
                         {{ form_label(form.title, 'Titre') }}
@@ -43,10 +53,10 @@
                     </p>
 
                     <p>
-                        {{ form_label(form.shortText, 'Texte court homepage') }}
-                        {{ form_widget(form.shortText) }}
+                        {{ form_label(form.chapo, 'Chapô') }}
+                        {{ form_widget(form.chapo) }}
 
-                        {% if form_errors(form.shortText) %} <br/> <span class="input-notification error png_bg">{{ form_errors(form.shortText) }}</span> {% endif %}
+                        {% if form_errors(form.chapo) %} <br/> <span class="input-notification error png_bg">{{ form_errors(form.chapo) }}</span> {% endif %}
                     </p>
 
                     <p>
@@ -67,6 +77,11 @@
                     </p>
 
                     <p>
+                        {{ form_label(form.video, 'Url Vidéo') }}
+                        {{ form_widget(form.video, { 'attr': {'class': 'text-input large-input'} })  }} {% if form_errors(form.video) %}<span class="input-notification error png_bg">{{ form_errors(form.video) }}</span> {% endif %}
+                    </p>   
+
+                    <p>
                         {{ form_label(form.isVisible, 'Visible sur le site ?') }}
                         (Etat Actuel: {% if entity.isVisible %}OUI{% else %}NON{% endif %})<br/>
                         {{ form_widget(form.isVisible) }} {% if form_errors(form.isVisible) %}<span class="input-notification error png_bg">{{ form_errors(form.isVisible) }}</span> {% endif %}
@@ -75,7 +90,7 @@
 
                 {{ form_rest(form) }}
                 <p>
-                    <button class="button" type="submit">Sauvegarder</button>
+                    <button class="button" type="submit">Mettre à jour</button>
                 </p>
             </form>
         </div> <!-- End .content-box-content -->
