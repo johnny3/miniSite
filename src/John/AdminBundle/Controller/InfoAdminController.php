@@ -3,6 +3,7 @@
 namespace John\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -72,5 +73,21 @@ class InfoAdminController extends Controller
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
         );
+    }
+    
+    public function titleAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('JohnAdminBundle:Info')->find(1);
+        
+        return new Response($entity->getTitle());
+    }
+    
+    public function footerSentenceAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('JohnAdminBundle:Info')->find(1);
+        
+        return new Response($entity->getSentenceFooter());
     }
 }

@@ -11,18 +11,9 @@ class InfoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('centerName', 'text')
-            ->add('street', 'text')
-            ->add('town', 'text')
-            ->add('metro', 'text')
-            ->add('building', 'text')
-            ->add('interphone', 'text')
-            ->add('phoneNumber', 'text')
+            ->add('title', 'text')
             ->add('email', 'email')
-            ->add('twitter', 'text')
-            ->add('facebook', 'text')
-            ->add('sentenceFooter1', 'text')
-            ->add('sentenceFooter2', 'text')
+            ->add('sentenceFooter', 'text')
         ;
     }
 

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Le site d'un boddhisattva{% endblock %}</title>
+        <title>{% block title %}{{ render(controller('JohnAdminBundle:InfoAdmin:footerSentence')) }}{% endblock %}</title>
         <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
         <meta name="description" content="Description">
         <meta name="keywords" content="Keywords">
@@ -27,7 +27,7 @@
                     <div class="object1472077567" data-left="98.08%"></div>
                 </div>
                 <h1 class="headline" data-left="4.78%">
-                    <a href="{{ path('homepage') }}">Le site d'un <br> Boddhisattva</a>
+                    <a href="{{ path('homepage') }}">{{ render(controller('JohnAdminBundle:InfoAdmin:title')) }}</a>
                 </h1>
 
                 <nav class="nav">
@@ -45,7 +45,7 @@
             <footer class="footer">
                 <div class="footer-inner">
                     <div style="position:relative;display:inline-block;padding-left:42px;padding-right:42px"><a title="RSS" class="rss-tag-icon" style="position: absolute; bottom: -10px; left: -6px; line-height: 32px;" href="#"></a>
-                        <p>Copyright @2014. All Rights Reserved.</p>
+                        <p>{{ render(controller('JohnAdminBundle:InfoAdmin:footerSentence')) }} @2014</p>
                     </div>
                 </div>
             </footer>
