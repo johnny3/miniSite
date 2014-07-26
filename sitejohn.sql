@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.6.12, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.16, for Win32 (x86)
 --
 -- Host: localhost    Database: sitejohn
 -- ------------------------------------------------------
@@ -33,13 +33,16 @@ CREATE TABLE `article` (
   `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `video` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `subCategory_id` int(11) DEFAULT NULL,
+  `is_visible` tinyint(1) DEFAULT NULL,
+  `chapo` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `is_picture` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_CD8737FA989D9B62` (`slug`),
   KEY `IDX_CD8737FA12469DE2` (`category_id`),
   KEY `IDX_CD8737FADB5A7180` (`subCategory_id`),
   CONSTRAINT `FK_CD8737FA12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
   CONSTRAINT `FK_CD8737FADB5A7180` FOREIGN KEY (`subCategory_id`) REFERENCES `subcategory` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +51,7 @@ CREATE TABLE `article` (
 
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
-INSERT INTO `article` VALUES (1,2,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-1','article 1','<p>corps article 1</p><p>suite corps article 1</p>','Animals-Eagle-icon-2.png',NULL,NULL),(2,1,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-2','article 2','<p>corps article 2</p><p>suite corps article 2</p>','Animals-Fishes-icon-2.png',NULL,NULL),(3,5,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-3','article 3','<p>corps article 3</p><p>suite corps article 3</p>','Animals-Horses-icon-2.png',NULL,NULL),(4,8,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-4','article 4','<p>corps article 4</p><p>suite corps article 4</p>','Fruits-Persimmon-icon.png',NULL,NULL),(5,NULL,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-5','article 5','<p>corps article 5</p><p>suite corps article 5</p>','Animals-Eagle-icon-2.png',NULL,1),(6,NULL,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-6','article 6','<p>corps article 6</p><p>suite corps article 6</p>','Animals-Fishes-icon-2.png',NULL,1),(7,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-7','article 7','<p>corps article 7</p><p>suite corps article 7</p>',NULL,NULL,2),(8,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-8','article 8','<p>corps article 8</p><p>suite corps article 8</p>',NULL,NULL,2),(9,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-9','article 9','<p>corps article 9</p><p>suite corps article 9</p>',NULL,NULL,1),(10,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-10','article 10','<p>corps article 10</p><p>suite corps article 10</p>',NULL,NULL,1),(11,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-11','article 11','<p>corps article 11</p><p>suite corps article 11</p>',NULL,NULL,1),(12,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-12','article 12','<p>corps article 12</p><p>suite corps article 12</p>',NULL,NULL,1);
+INSERT INTO `article` VALUES (1,2,'2013-03-10 22:16:04','2014-07-25 23:51:35','article-1','article 1','<p>corps article 1</p>\r\n<p>suite corps article 1</p>','Animals-Eagle-icon-2.png',NULL,NULL,1,'',1),(2,1,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-2','article 2','<p>corps article 2</p><p>suite corps article 2</p>','Animals-Fishes-icon-2.png',NULL,NULL,1,'',NULL),(3,5,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-3','article 3','<p>corps article 3</p><p>suite corps article 3</p>','Animals-Horses-icon-2.png',NULL,NULL,1,'',NULL),(4,8,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-4','article 4','<p>corps article 4</p><p>suite corps article 4</p>','Fruits-Persimmon-icon.png',NULL,NULL,1,'',NULL),(5,NULL,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-5','article 5','<p>corps article 5</p><p>suite corps article 5</p>','Animals-Eagle-icon-2.png',NULL,1,1,'',NULL),(6,NULL,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-6','article 6','<p>corps article 6</p><p>suite corps article 6</p>','Animals-Fishes-icon-2.png',NULL,1,1,'',NULL),(7,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-7','article 7','<p>corps article 7</p><p>suite corps article 7</p>',NULL,NULL,2,1,'',NULL),(8,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-8','article 8','<p>corps article 8</p><p>suite corps article 8</p>',NULL,NULL,2,1,'',NULL),(9,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-9','article 9','<p>corps article 9</p><p>suite corps article 9</p>',NULL,NULL,1,1,'',NULL),(10,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-10','article 10','<p>corps article 10</p><p>suite corps article 10</p>',NULL,NULL,1,1,'',NULL),(11,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-11','article 11','<p>corps article 11</p><p>suite corps article 11</p>',NULL,NULL,1,1,'',NULL),(12,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-12','article 12','<p>corps article 12</p><p>suite corps article 12</p>',NULL,NULL,1,1,'',NULL),(13,NULL,'2014-07-26 02:28:53','2014-07-26 02:28:53','article-test-films','article test films','<p>Corps du texte</p>',NULL,NULL,1,1,'<p>chap&ocirc;</p>',0);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,8 +131,43 @@ CREATE TABLE `fos_user` (
 
 LOCK TABLES `fos_user` WRITE;
 /*!40000 ALTER TABLE `fos_user` DISABLE KEYS */;
-INSERT INTO `fos_user` VALUES (1,'admin','admin','positive.energie.bouddha@gmail.com','positive.energie.bouddha@gmail.com',1,'job6nbwepjc4scgk8go4oo8o8444o0k','IwlYIAHu5wophOGyGobgflynqwWV15oFFJ/75Ty9wruhRAyo7i0+TlSolN+g2GHhZ+Nzgunnu7ja9sbBvi5GJQ==','2014-07-21 20:08:42',0,0,NULL,NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,NULL);
+INSERT INTO `fos_user` VALUES (1,'admin','admin','positive.energie.bouddha@gmail.com','positive.energie.bouddha@gmail.com',1,'job6nbwepjc4scgk8go4oo8o8444o0k','IwlYIAHu5wophOGyGobgflynqwWV15oFFJ/75Ty9wruhRAyo7i0+TlSolN+g2GHhZ+Nzgunnu7ja9sbBvi5GJQ==','2014-07-25 22:28:49',0,0,NULL,NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,NULL);
 /*!40000 ALTER TABLE `fos_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `info`
+--
+
+DROP TABLE IF EXISTS `info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `center_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `street` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `town` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `metro` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `building` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `interphone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `facebook` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sentence_footer1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sentence_footer2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `info`
+--
+
+LOCK TABLES `info` WRITE;
+/*!40000 ALTER TABLE `info` DISABLE KEYS */;
+INSERT INTO `info` VALUES (1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `info` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -209,7 +247,7 @@ CREATE TABLE `lexik_layout` (
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_B1B4C0FDAEA34913` (`reference`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,6 +256,7 @@ CREATE TABLE `lexik_layout` (
 
 LOCK TABLES `lexik_layout` WRITE;
 /*!40000 ALTER TABLE `lexik_layout` DISABLE KEYS */;
+INSERT INTO `lexik_layout` VALUES (1,'template-reference','Template de base des mails');
 /*!40000 ALTER TABLE `lexik_layout` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +277,7 @@ CREATE TABLE `lexik_layout_translation` (
   PRIMARY KEY (`id`),
   KEY `IDX_495DCB868C22AA1A` (`layout_id`),
   CONSTRAINT `FK_495DCB868C22AA1A` FOREIGN KEY (`layout_id`) REFERENCES `lexik_layout` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +286,59 @@ CREATE TABLE `lexik_layout_translation` (
 
 LOCK TABLES `lexik_layout_translation` WRITE;
 /*!40000 ALTER TABLE `lexik_layout_translation` DISABLE KEYS */;
+INSERT INTO `lexik_layout_translation` VALUES (1,1,'fr','{% block content %}{% endblock %}','2014-07-26 01:15:30','2014-07-26 01:15:30');
 /*!40000 ALTER TABLE `lexik_layout_translation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `newsletter_subscriber`
+--
+
+DROP TABLE IF EXISTS `newsletter_subscriber`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `newsletter_subscriber` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `town` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `newsletter_subscriber`
+--
+
+LOCK TABLES `newsletter_subscriber` WRITE;
+/*!40000 ALTER TABLE `newsletter_subscriber` DISABLE KEYS */;
+/*!40000 ALTER TABLE `newsletter_subscriber` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `newsletter_subscriber_test`
+--
+
+DROP TABLE IF EXISTS `newsletter_subscriber_test`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `newsletter_subscriber_test` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `newsletter_subscriber_test`
+--
+
+LOCK TABLES `newsletter_subscriber_test` WRITE;
+/*!40000 ALTER TABLE `newsletter_subscriber_test` DISABLE KEYS */;
+/*!40000 ALTER TABLE `newsletter_subscriber_test` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -298,4 +389,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-21 22:07:48
+-- Dump completed on 2014-07-26  3:00:58
