@@ -2,11 +2,11 @@
 
 {% block body_admin %}
     {% if entity.category is not null %}
-       <h2>Article Creation for Category {{ entity.category }}</h2>
+        <h2>Article Creation for Category {{ entity.category }}</h2>
     {% elseif (entity.subCategory is not null) %}
-       <h2>Article Creation for subCategory {{ entity.subCategory }}</h2>
+        <h2>Article Creation for subCategory {{ entity.subCategory }}</h2>
     {% else %}
-       <h2>Article Creation</h2>
+        <h2>Article Creation</h2>
     {% endif %}
 
     <div class="clear"></div> <!-- End .clear -->
@@ -33,15 +33,13 @@
 
             <form action="{{ path('article_admin_create') }}" method="post" {{ form_enctype(form) }} novalidate>
                 <div id="john_adminbundle_articletype">
-                    {% if entity.category is null and entity.subCategory is null %}
-                        <p>
+                    {% if entity.category is null or entity.subCategory is null %}
+                        <p id="category" style="display:none">
                             {{ form_label(form.category, 'Catégorie') }}             
                             {{ form_widget(form.category, { 'attr': {'class': 'small-input'} }) }}  {% if form_errors(form.category) %} <span class="input-notification error png_bg">{{ form_errors(form.category) }}</span> {% endif %}
                         </p>
-                    {% endif %}
 
-                    {% if entity.category is null and entity.subCategory is null %}
-                        <p>
+                        <p id="subcategory" style="display:none">
                             {{ form_label(form.subCategory, 'Sous catégorie') }}             
                             {{ form_widget(form.subCategory, { 'attr': {'class': 'small-input'} }) }}  {% if form_errors(form.subCategory) %} <span class="input-notification error png_bg">{{ form_errors(form.subCategory) }}</span> {% endif %}
                         </p>

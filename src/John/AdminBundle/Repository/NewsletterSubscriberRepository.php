@@ -15,6 +15,8 @@ class NewsletterSubscriberRepository extends EntityRepository {
 
     public function findActiveSubscribers()
     {
+        $tabActiveSubscribers = array();
+        
         $qb = $this->createQueryBuilder('ns')
                 ->where('ns.is_active = :is_active')
                 ->setParameter('is_active', true);

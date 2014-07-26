@@ -61,6 +61,12 @@
 
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and is_granted('ROLE_ADMIN') %}
                     <ul id="main-nav">  <!-- Accordion Menu -->
+                        <li>
+                            <a href="{{ path('homepage_admin') }}" class="nav-top-item  no-submenu {% if app.request.attributes.get('_route') == 'homepage_admin' %}current{% endif %}">
+                                Home
+                            </a>
+                        </li>
+                        
                         <li> 
                             <a href="#" class="nav-top-item {% if app.request.pathinfo|slice(7, 14) == 'category_admin' %}current{% endif %}"> <!-- Add the class "current" to current menu item -->
                                 Catégories
@@ -94,7 +100,7 @@
                         </li>
                         
                         <li>
-                            <a href="#" class="nav-top-item no-submenu {% if app.request.pathinfo|slice(7, 26) == 'newslettersubscriber_admin' %}current{% endif %}">
+                            <a href="{{ path('newslettersubscriber_admin') }}" class="nav-top-item no-submenu {% if app.request.pathinfo|slice(7, 26) == 'newslettersubscriber_admin' %}current{% endif %}">
                                 Abonnés Newsletter
                             </a>
                         </li>
