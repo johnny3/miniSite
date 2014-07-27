@@ -35,6 +35,8 @@ CREATE TABLE `article` (
   `is_visible` tinyint(1) DEFAULT NULL,
   `chapo` longtext COLLATE utf8_unicode_ci,
   `is_picture` tinyint(1) DEFAULT NULL,
+  `metaTitle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `metaDescription` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_CD8737FA989D9B62` (`slug`),
   KEY `IDX_CD8737FA12469DE2` (`category_id`),
@@ -50,8 +52,35 @@ CREATE TABLE `article` (
 
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
-INSERT INTO `article` VALUES (1,2,'2013-03-10 22:16:04','2014-07-25 23:51:35','article-1','article 1','<p>corps article 1</p>\r\n<p>suite corps article 1</p>','Animals-Eagle-icon-2.png',NULL,1,'',1),(2,1,'2013-03-10 22:16:04','2014-07-26 14:50:14','article-2','article 2','<p>corps article 2</p>\r\n<p>suite corps article 2</p>','Animals-Fishes-icon-2.png',NULL,1,'',1),(4,8,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-4','article 4','<p>corps article 4</p><p>suite corps article 4</p>','Fruits-Persimmon-icon.png',NULL,1,'',NULL),(5,NULL,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-5','article 5','<p>corps article 5</p><p>suite corps article 5</p>','Animals-Eagle-icon-2.png',1,1,'',NULL),(6,NULL,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-6','article 6','<p>corps article 6</p><p>suite corps article 6</p>','Animals-Fishes-icon-2.png',1,1,'',NULL),(7,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-7','article 7','<p>corps article 7</p><p>suite corps article 7</p>',NULL,2,1,'',NULL),(8,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-8','article 8','<p>corps article 8</p><p>suite corps article 8</p>',NULL,2,1,'',NULL),(9,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-9','article 9','<p>corps article 9</p><p>suite corps article 9</p>',NULL,1,1,'',NULL),(10,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-10','article 10','<p>corps article 10</p><p>suite corps article 10</p>',NULL,1,1,'',NULL),(11,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-11','article 11','<p>corps article 11</p><p>suite corps article 11</p>',NULL,1,1,'',NULL),(12,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-12','article 12','<p>corps article 12</p><p>suite corps article 12</p>',NULL,1,1,'',NULL),(13,NULL,'2014-07-26 02:28:53','2014-07-26 02:28:53','article-test-films','article test films','<p>Corps du texte</p>',NULL,1,1,'<p>chap&ocirc;</p>',0),(15,2,'2013-03-10 22:16:04','2014-07-25 23:51:35','article-20','article 20','<p>corps article 2</p>\r\n<p>suite corps article 2</p>','Animals-Eagle-icon-2.png',NULL,1,'',1),(16,NULL,'2014-07-26 18:40:34','2014-07-26 18:40:34','vivre-chaque-jour-comme-s-il-etait-le-dernier','Vivre chaque jour comme s\'il était le dernier','<p>Ce concept revient r&eacute;guli&egrave;rement et je dois avouer qu\'il m\'inspire ces derniers temps.</p>\r\n<p>Vivre chaque jour comme s\'il &eacute;tait le dernier... Est-ce vraiment possible? En fait, je crois que j\'aimerais vivre chaque ann&eacute;e comme si elle &eacute;tait la derni&egrave;re de ma vie physique. Car si j\'applique le principe de vivre chaque journ&eacute;e comme si elle &eacute;tait la derni&egrave;re, alors, au final, je ferai des choses tr&egrave;s humaines mais pratiquement rien de mat&eacute;riel. Et le mat&eacute;riel fait partie de notre vie.</p>\r\n<p>J\'&eacute;crirais &agrave; mes enfants et je tournerais une vid&eacute;o pour eux. Je pense que je tournerais des vid&eacute;os pour de nombreuses personnes, car je n\'aurais pas le temps de toutes les voir. Et je leur enverrais. J\'appellerais certaines personnes pour leur dire ce que j\'ai sur le coeur.</p>\r\n<p>J\'irais me promener dans certains endroits qui ont marqu&eacute; ma vie. Un retour sur ma vie. Je relirais certains &eacute;crits que j\'ai produits.</p>\r\n<p>Je pense que je demanderais pardon aussi &agrave; de nombreuses personnes pour les avoir bless&eacute;es.</p>\r\n<p>Il serait aussi possible que je fasse une pri&egrave;re consciente (je reviendrai plus tard sur ce concept)</p>\r\n<p>Mais au final, une journ&eacute;e, ce serait si court &agrave; vivre, si je savais que c\'&eacute;tait la derni&egrave;re de mon existence sur Terre.</p>\r\n<p>Et en m&ecirc;me temps... si, demain, je me faisais renverser alors que je fais attention? Si je recevais une &eacute;chelle sur la t&ecirc;te. La mort physique peut survenir &agrave; tout moment. Ce qui m\'am&egrave;ne &agrave; approfondir le concept de \"la derni&egrave;re journ&eacute;e\".</p>\r\n<p>Et si, au final, nous vivions la derni&egrave;re heure de notre vie? La derni&egrave;re minute?</p>\r\n<p>Le temps est pr&eacute;cieux, et il nous file entre les doigts, comme s\'il s\'&eacute;coulait dans un sablier. A peine je viens d\'avoir une pens&eacute;e qu\'elle appartient au pass&eacute;.</p>\r\n<p>C\'est pourquoi il m\'apparait si important d\'employer mon temps intelligemment, &agrave; pr&eacute;sent. A faire ce que j\'aime. Mais aussi &agrave; faire ce que je n\'aime pas si cela est n&eacute;cessaire. A ne plus \"perdre mon temps\" &agrave; juger, que ce soit une situation, des gens, ou moi-m&ecirc;me. La tranquilit&eacute; d\'esprit se manisfeste dans notre existence lorsque nous cessons de r&eacute;sister, lorsque nous acceptons les situations de notre vie sans les juger. Il devient alors possible de les faire &eacute;voluer vers quelque chose qui nous correspond davantage.</p>\r\n<p>Je finirai ce post par la r&eacute;ponse que Bruce Lee a donn&eacute;e &agrave; un journaliste qui lui demandait quelles &eacute;taient ses limites: \"les limites du ciel ouvert\".</p>\r\n<p>Pour r&eacute;aliser vos r&ecirc;ves, regardez souvent en l\'air.</p>',NULL,3,1,NULL,0);
+INSERT INTO `article` VALUES (1,2,'2013-03-10 22:16:04','2014-07-25 23:51:35','article-1','article 1','<p>corps article 1</p>\r\n<p>suite corps article 1</p>','Animals-Eagle-icon-2.png',NULL,1,NULL,1,NULL,NULL),(2,1,'2013-03-10 22:16:04','2014-07-26 14:50:14','article-2','article 2','<p>corps article 2</p>\r\n<p>suite corps article 2</p>','Animals-Fishes-icon-2.png',NULL,1,NULL,1,NULL,NULL),(4,8,'2013-03-10 22:16:04','2014-07-27 22:14:10','article-4','article 4','<p>corps article 4</p>\r\n<p>suite corps article 4</p>','Fruits-Persimmon-icon.png',NULL,1,NULL,1,NULL,NULL),(5,NULL,'2013-03-10 22:16:04','2014-07-27 20:42:32','article-5','article 5','<p>corps article 5</p>\r\n<p>suite corps article 5</p>','Animals-Eagle-icon-2.png',1,1,'<p>chap&ocirc;&nbsp;article 5</p>\r\n<p>suite&nbsp;chap&ocirc;&nbsp;article 5</p>',1,NULL,NULL),(6,NULL,'2013-03-10 22:16:04','2013-03-10 22:16:04','article-6','article 6','<p>corps article 6</p><p>suite corps article 6</p>','Animals-Fishes-icon-2.png',1,1,NULL,NULL,NULL,NULL),(7,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-7','article 7','<p>corps article 7</p><p>suite corps article 7</p>',NULL,2,1,NULL,NULL,NULL,NULL),(8,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-8','article 8','<p>corps article 8</p><p>suite corps article 8</p>',NULL,2,1,NULL,NULL,NULL,NULL),(9,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-9','article 9','<p>corps article 9</p><p>suite corps article 9</p>',NULL,1,1,NULL,NULL,NULL,NULL),(10,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-10','article 10','<p>corps article 10</p><p>suite corps article 10</p>',NULL,1,1,NULL,NULL,NULL,NULL),(11,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-11','article 11','<p>corps article 11</p><p>suite corps article 11</p>',NULL,1,1,NULL,NULL,NULL,NULL),(12,NULL,'2013-03-18 22:53:38','2013-03-18 22:53:38','article-12','article 12','<p>corps article 12</p><p>suite corps article 12</p>',NULL,1,1,NULL,NULL,NULL,NULL),(13,NULL,'2014-07-26 02:28:53','2014-07-26 02:28:53','article-test-films','article test films','<p>Corps du texte</p>',NULL,1,1,NULL,0,NULL,NULL),(15,2,'2013-03-10 22:16:04','2014-07-25 23:51:35','article-20','article 20','<p>corps article 2</p>\r\n<p>suite corps article 2</p>','Animals-Eagle-icon-2.png',NULL,1,NULL,1,NULL,NULL),(16,NULL,'2014-07-26 18:40:34','2014-07-26 18:40:34','vivre-chaque-jour-comme-s-il-etait-le-dernier','Vivre chaque jour comme s\'il était le dernier','<p>Ce concept revient r&eacute;guli&egrave;rement et je dois avouer qu\'il m\'inspire ces derniers temps.</p>\r\n<p>Vivre chaque jour comme s\'il &eacute;tait le dernier... Est-ce vraiment possible? En fait, je crois que j\'aimerais vivre chaque ann&eacute;e comme si elle &eacute;tait la derni&egrave;re de ma vie physique. Car si j\'applique le principe de vivre chaque journ&eacute;e comme si elle &eacute;tait la derni&egrave;re, alors, au final, je ferai des choses tr&egrave;s humaines mais pratiquement rien de mat&eacute;riel. Et le mat&eacute;riel fait partie de notre vie.</p>\r\n<p>J\'&eacute;crirais &agrave; mes enfants et je tournerais une vid&eacute;o pour eux. Je pense que je tournerais des vid&eacute;os pour de nombreuses personnes, car je n\'aurais pas le temps de toutes les voir. Et je leur enverrais. J\'appellerais certaines personnes pour leur dire ce que j\'ai sur le coeur.</p>\r\n<p>J\'irais me promener dans certains endroits qui ont marqu&eacute; ma vie. Un retour sur ma vie. Je relirais certains &eacute;crits que j\'ai produits.</p>\r\n<p>Je pense que je demanderais pardon aussi &agrave; de nombreuses personnes pour les avoir bless&eacute;es.</p>\r\n<p>Il serait aussi possible que je fasse une pri&egrave;re consciente (je reviendrai plus tard sur ce concept)</p>\r\n<p>Mais au final, une journ&eacute;e, ce serait si court &agrave; vivre, si je savais que c\'&eacute;tait la derni&egrave;re de mon existence sur Terre.</p>\r\n<p>Et en m&ecirc;me temps... si, demain, je me faisais renverser alors que je fais attention? Si je recevais une &eacute;chelle sur la t&ecirc;te. La mort physique peut survenir &agrave; tout moment. Ce qui m\'am&egrave;ne &agrave; approfondir le concept de \"la derni&egrave;re journ&eacute;e\".</p>\r\n<p>Et si, au final, nous vivions la derni&egrave;re heure de notre vie? La derni&egrave;re minute?</p>\r\n<p>Le temps est pr&eacute;cieux, et il nous file entre les doigts, comme s\'il s\'&eacute;coulait dans un sablier. A peine je viens d\'avoir une pens&eacute;e qu\'elle appartient au pass&eacute;.</p>\r\n<p>C\'est pourquoi il m\'apparait si important d\'employer mon temps intelligemment, &agrave; pr&eacute;sent. A faire ce que j\'aime. Mais aussi &agrave; faire ce que je n\'aime pas si cela est n&eacute;cessaire. A ne plus \"perdre mon temps\" &agrave; juger, que ce soit une situation, des gens, ou moi-m&ecirc;me. La tranquilit&eacute; d\'esprit se manisfeste dans notre existence lorsque nous cessons de r&eacute;sister, lorsque nous acceptons les situations de notre vie sans les juger. Il devient alors possible de les faire &eacute;voluer vers quelque chose qui nous correspond davantage.</p>\r\n<p>Je finirai ce post par la r&eacute;ponse que Bruce Lee a donn&eacute;e &agrave; un journaliste qui lui demandait quelles &eacute;taient ses limites: \"les limites du ciel ouvert\".</p>\r\n<p>Pour r&eacute;aliser vos r&ecirc;ves, regardez souvent en l\'air.</p>',NULL,3,1,NULL,0,NULL,NULL);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `article_tags`
+--
+
+DROP TABLE IF EXISTS `article_tags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `article_tags` (
+  `article_id` int(11) NOT NULL,
+  `tag_id` int(11) NOT NULL,
+  PRIMARY KEY (`article_id`,`tag_id`),
+  KEY `IDX_DFFE13277294869C` (`article_id`),
+  KEY `IDX_DFFE1327BAD26311` (`tag_id`),
+  CONSTRAINT `FK_DFFE1327BAD26311` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_DFFE13277294869C` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `article_tags`
+--
+
+LOCK TABLES `article_tags` WRITE;
+/*!40000 ALTER TABLE `article_tags` DISABLE KEYS */;
+/*!40000 ALTER TABLE `article_tags` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -68,10 +97,8 @@ CREATE TABLE `category` (
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `short_text` longtext COLLATE utf8_unicode_ci,
   `meta_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `meta_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `tags` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `position` int(11) NOT NULL,
   `chapo` longtext COLLATE utf8_unicode_ci,
   `is_picture` tinyint(1) DEFAULT NULL,
@@ -89,7 +116,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'2013-03-10 22:13:47','2014-07-21 20:17:34','conversations-avec-dieu','Conversations Avec Dieu','neale.jpg','<p>Neale Donald Walsch, auteur de \"Conversations avec Dieu\", nous a permis de nous ouvrir &agrave; une nouvelle r&eacute;alit&eacute;. Aujourd\'hui, il publie quotidiennement des lettres que je vous livre en fran&ccedil;ais.</p>',NULL,NULL,NULL,1,NULL,1,0,NULL,1),(2,'2013-03-10 22:13:47','2013-03-10 22:13:47','bodhiyuga','Bodhiyuga','bodhiyuga.jpg','<p>Bodhiyuga, un être en quête perpétuelle d\'éveil, et a énormément apporté avant de fermer son site. Je vous livre aujourd\'hui une partie de ses lettres.</p>',NULL,NULL,NULL,3,NULL,1,0,NULL,1),(3,'2013-03-10 22:13:47','2013-03-10 22:13:47','musiques-films','Musiques & Films','Musique-Film.jpg','<p>Depuis des années, les films et la musique m\'aident à m\'ouvrir sur le monde, alors voici une sélection de ceux qui m\'ont grandement inspirés.</p>',NULL,NULL,NULL,2,NULL,1,0,NULL,1),(4,'2013-03-10 22:13:47','2014-07-26 15:24:04','spiritualite','Spiritualité','spiritualite.jpg','<p>Ma r&eacute;flexion personnelle sur la spiritualit&eacute; en r&egrave;gle g&eacute;n&eacute;rale.</p>',NULL,NULL,NULL,4,NULL,1,0,NULL,0),(5,'2013-03-10 22:13:47','2013-03-10 22:13:47','la-vie','La vie','difficultes-bonmoments.jpg','<p>Diverses réflexions sur la vie, ses obstacles comme ses joies.</p>',NULL,NULL,NULL,5,NULL,1,0,NULL,1),(6,'2013-03-10 22:13:47','2014-07-26 15:24:07','citations','Citations','citations-reflexions.jpg','<p>Citations et r&eacute;flexions de grands hommes qui ont influenc&eacute; leurs proches... et leurs moins proches...</p>',NULL,NULL,NULL,8,NULL,1,0,NULL,0),(7,'2013-03-10 22:13:47','2014-07-26 15:24:13','histoires','Histoires','histoires.jpg','<p>Histoires spirituelles, lues sur internet, que je trouve inspirantes.</p>',NULL,NULL,NULL,6,NULL,1,0,NULL,0),(8,'2013-03-10 22:13:47','2014-07-26 15:26:42','lectures','Lectures','lectures.jpg','<p>Les livres que j\'ai lus ces derni&egrave;res ann&eacute;es, ces derniers mois ou ces derni&egrave;res semaines, qui ont influenc&eacute; ma vie.</p>',NULL,NULL,NULL,7,NULL,1,0,NULL,1),(9,'2013-03-10 22:13:47','2014-07-26 15:24:26','ma-vie','Ma vie','ma-vie.gif','<p>Divers &eacute;v&eacute;nements de ma vie, la plupart spirituels.</p>',NULL,NULL,NULL,9,NULL,1,0,NULL,0),(10,'2014-07-26 14:59:05','2014-07-26 15:44:48','contact','Contact',NULL,NULL,NULL,NULL,NULL,10,NULL,0,1,'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra, tellus sit amet congue vulputate, nisi erat iaculis nibh, vitae feugiat sapien ante eget mauris.</p>\r\n<p>Cras elit nisl, rhoncus nec iaculis ultricies, feugiat eget sapien. Pellentesque ac felis tellus. Aenean sollicitudin imperdiet arcu, vitae dignissim est posuere id. Duis placerat justo eu nunc interdum ultrices.</p>\r\n<p>Our Address</p>\r\n<p>586 Main Ave, Building 42<br />Main City, Country 12345-6789</p>\r\n<p>T: (555) 123 - 4567<br />F: (555) 523 - 4567</p>\r\n<p>W:<a href=\"file://sauvegarde2/Public/PROJETS%20INFORMATIQUES/SiteJohnRefonte/contacts.html#\">http://www.domain.com<br /></a>E:&nbsp;<a href=\"file://sauvegarde2/Public/PROJETS%20INFORMATIQUES/SiteJohnRefonte/contacts.html#\">email@domain.com</a></p>',1);
+INSERT INTO `category` VALUES (1,'2013-03-10 22:13:47','2014-07-21 20:17:34','conversations-avec-dieu','Conversations Avec Dieu','neale.jpg',NULL,NULL,1,'<p>Neale Donald Walsch, auteur de \"Conversations avec Dieu\", nous a permis de nous ouvrir &agrave; une nouvelle r&eacute;alit&eacute;. Aujourd\'hui, il publie quotidiennement des lettres que je vous livre en fran&ccedil;ais.</p>',1,0,NULL,1),(2,'2013-03-10 22:13:47','2013-03-10 22:13:47','bodhiyuga','Bodhiyuga','bodhiyuga.jpg',NULL,NULL,3,'<p>Bodhiyuga, un être en quête perpétuelle d\'éveil, et a énormément apporté avant de fermer son site. Je vous livre aujourd\'hui une partie de ses lettres.</p>',1,0,NULL,1),(3,'2013-03-10 22:13:47','2013-03-10 22:13:47','musiques-films','Musiques & Films','Musique-Film.jpg',NULL,NULL,2,'<p>Depuis des années, les films et la musique m\'aident à m\'ouvrir sur le monde, alors voici une sélection de ceux qui m\'ont grandement inspirés.</p>',1,0,NULL,1),(4,'2013-03-10 22:13:47','2014-07-26 15:24:04','spiritualite','Spiritualité','spiritualite.jpg',NULL,NULL,4,'<p>Ma r&eacute;flexion personnelle sur la spiritualit&eacute; en r&egrave;gle g&eacute;n&eacute;rale.</p>',1,0,NULL,0),(5,'2013-03-10 22:13:47','2013-03-10 22:13:47','la-vie','La vie','difficultes-bonmoments.jpg',NULL,NULL,5,'<p>Diverses réflexions sur la vie, ses obstacles comme ses joies.</p>',1,0,NULL,1),(6,'2013-03-10 22:13:47','2014-07-26 15:24:07','citations','Citations','citations-reflexions.jpg',NULL,NULL,8,'<p>Citations et r&eacute;flexions de grands hommes qui ont influenc&eacute; leurs proches... et leurs moins proches...</p>',1,0,NULL,0),(7,'2013-03-10 22:13:47','2014-07-26 15:24:13','histoires','Histoires','histoires.jpg',NULL,NULL,6,'<p>Histoires spirituelles, lues sur internet, que je trouve inspirantes.</p>',1,0,NULL,0),(8,'2013-03-10 22:13:47','2014-07-26 15:26:42','lectures','Lectures','lectures.jpg',NULL,NULL,7,'<p>Les livres que j\'ai lus ces derni&egrave;res ann&eacute;es, ces derniers mois ou ces derni&egrave;res semaines, qui ont influenc&eacute; ma vie.</p>',1,0,NULL,1),(9,'2013-03-10 22:13:47','2014-07-26 15:24:26','ma-vie','Ma vie','ma-vie.gif',NULL,NULL,9,'<p>Divers &eacute;v&eacute;nements de ma vie, la plupart spirituels.</p>',1,0,NULL,0),(10,'2014-07-26 14:59:05','2014-07-26 15:44:48','contact','Contact',NULL,NULL,NULL,10,'',0,1,'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra, tellus sit amet congue vulputate, nisi erat iaculis nibh, vitae feugiat sapien ante eget mauris.</p>\r\n<p>Cras elit nisl, rhoncus nec iaculis ultricies, feugiat eget sapien. Pellentesque ac felis tellus. Aenean sollicitudin imperdiet arcu, vitae dignissim est posuere id. Duis placerat justo eu nunc interdum ultrices.</p>\r\n<p>Our Address</p>\r\n<p>586 Main Ave, Building 42<br />Main City, Country 12345-6789</p>\r\n<p>T: (555) 123 - 4567<br />F: (555) 523 - 4567</p>\r\n<p>W:<a href=\"file://sauvegarde2/Public/PROJETS%20INFORMATIQUES/SiteJohnRefonte/contacts.html#\">http://www.domain.com<br /></a>E:&nbsp;<a href=\"file://sauvegarde2/Public/PROJETS%20INFORMATIQUES/SiteJohnRefonte/contacts.html#\">email@domain.com</a></p>',1);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +157,7 @@ CREATE TABLE `fos_user` (
 
 LOCK TABLES `fos_user` WRITE;
 /*!40000 ALTER TABLE `fos_user` DISABLE KEYS */;
-INSERT INTO `fos_user` VALUES (1,'admin','admin','positive.energie.bouddha@gmail.com','positive.energie.bouddha@gmail.com',1,'job6nbwepjc4scgk8go4oo8o8444o0k','IwlYIAHu5wophOGyGobgflynqwWV15oFFJ/75Ty9wruhRAyo7i0+TlSolN+g2GHhZ+Nzgunnu7ja9sbBvi5GJQ==','2014-07-26 14:46:26',0,0,NULL,NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,NULL);
+INSERT INTO `fos_user` VALUES (1,'admin','admin','positive.energie.bouddha@gmail.com','positive.energie.bouddha@gmail.com',1,'job6nbwepjc4scgk8go4oo8o8444o0k','IwlYIAHu5wophOGyGobgflynqwWV15oFFJ/75Ty9wruhRAyo7i0+TlSolN+g2GHhZ+Nzgunnu7ja9sbBvi5GJQ==','2014-07-27 13:44:06',0,0,NULL,NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,NULL);
 /*!40000 ALTER TABLE `fos_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,18 +170,9 @@ DROP TABLE IF EXISTS `info`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `center_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `street` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `town` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `metro` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `building` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `interphone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `facebook` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `twitter` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sentence_footer1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sentence_footer2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sentence_footer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -165,7 +183,7 @@ CREATE TABLE `info` (
 
 LOCK TABLES `info` WRITE;
 /*!40000 ALTER TABLE `info` DISABLE KEYS */;
-INSERT INTO `info` VALUES (1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `info` VALUES (1,'positive.energie.bouddha@gmail.com','Site d\'un chercheur de paix <br/>intérieure','Site d\'un chercheur de paix intérieure');
 /*!40000 ALTER TABLE `info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -355,13 +373,13 @@ CREATE TABLE `subcategory` (
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `short_text` longtext COLLATE utf8_unicode_ci,
   `metaTitle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `metaDescription` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `position` int(11) NOT NULL,
   `is_visible` tinyint(1) DEFAULT NULL,
   `is_picture` tinyint(1) DEFAULT NULL,
   `body` longtext COLLATE utf8_unicode_ci,
+  `chapo` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_723649C9989D9B62` (`slug`),
   KEY `IDX_723649C912469DE2` (`category_id`),
@@ -375,8 +393,32 @@ CREATE TABLE `subcategory` (
 
 LOCK TABLES `subcategory` WRITE;
 /*!40000 ALTER TABLE `subcategory` DISABLE KEYS */;
-INSERT INTO `subcategory` VALUES (1,3,'2013-03-10 22:13:47','2014-07-21 21:57:37','films','Films','films.jpg',NULL,NULL,NULL,2,1,1,NULL),(2,3,'2013-03-10 22:13:47','2014-07-21 21:41:34','musiques','Musiques','musique.jpg',NULL,NULL,NULL,1,1,1,NULL),(3,5,'2014-07-26 18:06:03','2014-07-26 18:42:11','apprecier-chaque-moment','Apprécier chaque moment','675332292_a06a028032_m.jpg',NULL,NULL,NULL,1,1,1,NULL),(4,5,'2014-07-26 18:06:36','2014-07-26 19:55:53','les-difficultes-rencontrees','Les difficultés rencontrées','8353af577813382a1a325822224e82a8.jpg',NULL,NULL,NULL,2,0,1,NULL);
+INSERT INTO `subcategory` VALUES (1,3,'2013-03-10 22:13:47','2014-07-21 21:57:37','films','Films','films.jpg',NULL,NULL,2,1,1,NULL,''),(2,3,'2013-03-10 22:13:47','2014-07-21 21:41:34','musiques','Musiques','musique.jpg',NULL,NULL,1,1,1,NULL,''),(3,5,'2014-07-26 18:06:03','2014-07-26 18:42:11','apprecier-chaque-moment','Apprécier chaque moment','675332292_a06a028032_m.jpg',NULL,NULL,1,1,1,NULL,''),(4,5,'2014-07-26 18:06:36','2014-07-26 19:55:53','les-difficultes-rencontrees','Les difficultés rencontrées','8353af577813382a1a325822224e82a8.jpg',NULL,NULL,2,0,1,NULL,'');
 /*!40000 ALTER TABLE `subcategory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tag`
+--
+
+DROP TABLE IF EXISTS `tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tag`
+--
+
+LOCK TABLES `tag` WRITE;
+/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
+INSERT INTO `tag` VALUES (1,'tag 1'),(2,'tag 2');
+/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -388,4 +430,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-26 20:32:21
+-- Dump completed on 2014-07-27 23:57:15
