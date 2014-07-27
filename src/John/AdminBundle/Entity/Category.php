@@ -18,7 +18,6 @@ class Category {
     {
         $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->subCategories = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->contactCat = false;
     }
 
     /**
@@ -80,13 +79,6 @@ class Category {
     /**
      * @var string
      *
-     * @ORM\Column(name="short_text", type="text", nullable=true)
-     */
-    private $shortText;
-    
-    /**
-     * @var string
-     *
      * @ORM\Column(name="body", type="text", nullable=true)
      */
     private $body;
@@ -123,13 +115,6 @@ class Category {
      * @ORM\Column(name="meta_description", type="string", length=255, nullable=true)
      */
     private $metaDescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tags", type="string", length=255, nullable=true)
-     */
-    private $tags;
 
     /**
      * @ORM\OneToMany(targetEntity="John\AdminBundle\Entity\Article", mappedBy="category") 
@@ -440,29 +425,6 @@ class Category {
     }
 
     /**
-     * Set tags
-     *
-     * @param string $tags
-     * @return Category
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Get tags
-     *
-     * @return string 
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
      * Set contactCat
      *
      * @param boolean $contactCat
@@ -572,29 +534,6 @@ class Category {
     public function removeSubCategorie(\John\AdminBundle\Entity\SubCategory $subCategories)
     {
         $this->subCategories->removeElement($subCategories);
-    }
-
-    /**
-     * Set shortText
-     *
-     * @param string $shortText
-     * @return Category
-     */
-    public function setShortText($shortText)
-    {
-        $this->shortText = $shortText;
-
-        return $this;
-    }
-
-    /**
-     * Get shortText
-     *
-     * @return string 
-     */
-    public function getShortText()
-    {
-        return $this->shortText;
     }
     
     public function getWebPath()

@@ -1,0 +1,35 @@
+{% extends "::baseAdmin.html.twig" %}
+
+{% block body_admin %}
+    <h2>Article {{ article.title }}</h2>
+
+    <div class="clear"></div> <!-- End .clear -->
+    <div class="content-box"><!-- Start Content Box -->
+        <div class="content-box-header">
+
+            <div class="clear"></div>
+
+        </div> <!-- End .content-box-header -->
+
+        <div class="content-box-content">
+
+            <p><span class="souligne-gras">Catégorie:</span> {{ article.category }}</p>
+            <p><span class="souligne-gras">Sous-catégorie:</span> {{ article.subCategory }}</p>
+            <p><span class="souligne-gras">Est publié:</span> {% if article.isVisible %}OUI{% else %}NON{% endif %}</p>
+            {% include 'JohnSiteBundle:Article:article.html.twig' with {'entity' : article}  %}
+
+            <table class="action-button-table">
+                <tbody>
+                    <tr>
+                        <td>
+                            Actions possibles: <span class="edit"><a href="{{ path('article_admin_edit', { 'id': article.id }) }}" title="Edit"><img src="{{ asset('bundles/johnadmin/images/icons/pencil.png') }}" alt="Edit" /></a></span>
+                        </td>
+                        <td>
+                            <a href="{{ path('article_admin_delete', { 'id': article.id }) }}" title="Delete"><img src="{{ asset('bundles/johnadmin/images/icons/cross.png') }}" alt="Delete" /></a> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> <!-- End .content-box-content -->
+    </div> <!-- End .content-box -->
+{% endblock %}

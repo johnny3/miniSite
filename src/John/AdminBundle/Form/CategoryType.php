@@ -12,9 +12,9 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+                ->add('isVisible')
+                ->add('position')
                 ->add('title')
-                ->add('file')
-                ->add('isPicture', 'checkbox', array('data' => true))
                 ->add('chapo', 'textarea', array(
                     'attr' => array(
                         'class' => 'tinymce',
@@ -25,15 +25,11 @@ class CategoryType extends AbstractType
                         'class' => 'tinymce',
                         'data-theme' => 'advanced' // simple, advanced, bbcode
             )))
-                ->add('shortText', 'textarea', array(
-                    'attr' => array(
-                        'class' => 'tinymce',
-                        'data-theme' => 'simple' // simple, advanced, bbcode
-            )))
-                
+                ->add('file')
+                ->add('isPicture', 'checkbox', array('data' => true))
+                ->add('metaTitle')
+                ->add('metaDescription')
                 ->add('contactCat')
-                ->add('position')
-                ->add('isVisible')
         ;
     }
 

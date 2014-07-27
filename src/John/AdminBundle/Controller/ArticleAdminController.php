@@ -70,15 +70,16 @@ class ArticleAdminController extends Controller
      */
     public function newAction($id, $type)
     {
+        $em = $this->getDoctrine()->getManager();
         $entity = new Article();
+        $tags = $em->getRepository('JohnAdminBundle:Tag')->getAutoCompleteTags();
 
         if (null != $id && null != $type) {
             if ('category' == $type) {
                 $em = $this->getDoctrine()->getManager();
                 $category = $em->getRepository('JohnAdminBundle:Category')->find($id);
                 $entity->setCategory($category);
-            }
-            elseif ('subcategory' == $type) {
+            } elseif ('subcategory' == $type) {
                 $em = $this->getDoctrine()->getManager();
                 $subCategory = $em->getRepository('JohnAdminBundle:SubCategory')->find($id);
                 $entity->setSubCategory($subCategory);
@@ -86,6 +87,14 @@ class ArticleAdminController extends Controller
         }
 
         $form = $this->createForm(new ArticleType(), $entity);
+
+        if (null != $tags) {
+            return array(
+                'entity' => $entity,
+                'tags' => $tags,
+                'form' => $form->createView(),
+            );
+        }
 
         return array(
             'entity' => $entity,
@@ -147,12 +156,21 @@ class ArticleAdminController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('JohnAdminBundle:Article')->find($id);
+        $tags = $em->getRepository('JohnAdminBundle:Tag')->getAutoCompleteTags();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Article entity.');
         }
 
         $editForm = $this->createForm(new ArticleType(), $entity);
+
+        if (null != $tags) {
+            return array(
+                'entity' => $entity,
+                'tags' => $tags,
+                'edit_form' => $editForm->createView(),
+            );
+        }
 
         return array(
             'entity' => $entity,

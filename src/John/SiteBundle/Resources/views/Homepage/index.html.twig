@@ -17,10 +17,12 @@
                                                 {% endif %}
 
                                                 {# on affiche les informations de la catégorie #}    
-                                                <div class="layout-cell {% if loop.index is divisibleby(3) %}layout-item-7{% else %}layout-item-5{% endif %}" style="width: 33%" >
+                                                <div class="layout-cell {% if loop.index is divisibleby(3) or loop.index == loop.last %}layout-item-7{% else %}layout-item-5{% endif %}" style="width: 33%" >
                                                     <h1><a href="{{ path('category_show', { 'slug': category.slug }) }}">{{ category.title }}</a>{% if category.subCategories is defined and category.subCategories is not empty %}{% endif %}</h1>
                                                     <p style="text-align: center;"><a href="{{ path('category_show', { 'slug': category.slug }) }}"><img alt="" src="{{ asset(['uploads/', category.picture] | join | apply_filter('thumbnail_category')) }}"></a><br></p>
-                                                    <p>{{ category.shortText| raw }}</p>
+                                                    {% if category.chapo is not null and category.chapo is not empty %}
+                                                        <p>{{ category.chapo| raw }}</p>
+                                                    {% endif %}
                                                 </div>
 
                                                 {% if loop.index is divisibleby(3) %}

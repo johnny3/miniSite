@@ -41,12 +41,22 @@
                         {{ form_label(edit_form.title, 'Titre') }}
                         {{ form_widget(edit_form.title, { 'attr': {'class': 'text-input medium-input'} })  }} {% if form_errors(edit_form.title) %}<span class="input-notification error png_bg">{{ form_errors(edit_form.title) }}</span> {% endif %}
                     </p>
+                    
+                    <p>
+                        {{ form_label(edit_form.metaTitle, 'MetaTitre') }}
+                        {{ form_widget(edit_form.metaTitle, { 'attr': {'class': 'text-input large-input'} })  }} {% if form_errors(edit_form.metaTitle) %}<span class="input-notification error png_bg">{{ form_errors(edit_form.metaTitle) }}</span> {% endif %}
+                    </p>
 
                     <p>
-                        {{ form_label(edit_form.shortText, 'Texte court homepage') }}
-                        {{ form_widget(edit_form.shortText) }}
+                        {{ form_label(edit_form.metaDescription, 'MetaDescription') }}
+                        {{ form_widget(edit_form.metaDescription, { 'attr': {'class': 'text-input large-input'} })  }} {% if form_errors(edit_form.metaDescription) %}<span class="input-notification error png_bg">{{ form_errors(edit_form.metaDescription) }}</span> {% endif %}
+                    </p>
 
-                        {% if form_errors(edit_form.shortText) %} <br/> <span class="input-notification error png_bg">{{ form_errors(edit_form.shortText) }}</span> {% endif %}
+                    <p>
+                        {{ form_label(edit_form.chapo, 'Chapô') }}
+                        {{ form_widget(edit_form.chapo) }}
+
+                        {% if form_errors(edit_form.chapo) %} <br/> <span class="input-notification error png_bg">{{ form_errors(edit_form.chapo) }}</span> {% endif %}
                     </p>
 
                     <p>

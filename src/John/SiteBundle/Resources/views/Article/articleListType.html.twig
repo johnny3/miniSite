@@ -12,12 +12,21 @@
         </header>
 
         <div class="description">
-               {% if article.picture is not empty %}
-                    <a href="{{ path('article_show', {"slug": article.slug}) }}">
-                        <img src="{{ asset(['bundles/johnsite/images/', article.picture]|join|apply_filter('thumbnail_articlelist')) }}"  alt="" class="image"/>
-                    </a>
-               {% endif %}
-               {{ article.body| truncate(200, true, ' [...]') | raw  }}
+            {% if article.picture is not empty %}
+                 <a href="{{ path('article_show', {"slug": article.slug}) }}">
+                     <img src="{{ asset(['bundles/johnsite/images/', article.picture]|join|apply_filter('thumbnail_articlelist')) }}"  alt="" class="image"/>
+                 </a>
+            {% endif %}
+            {% if article.chapo is defined %}
+                {% if article.chapo is not null or article.chapo is not empty %}
+                    {% set articleText = article.chapo %}
+                {% else %}
+                    {% set articleText = article.body %}
+                {% endif %}
+            {% else %}
+                {% set articleText = article.body %}
+            {% endif %}
+            {{ articleText| truncate(200, true, ' [...]') | raw  }}
         </div>
     </article>
 </div>

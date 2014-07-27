@@ -5,6 +5,7 @@ namespace John\AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class SubCategoryType extends AbstractType
 {
@@ -12,22 +13,29 @@ class SubCategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+                ->add('isVisible')
+                ->add('position')
                 ->add('title')
-                ->add('file')
-                ->add('isPicture', 'checkbox', array('data' => true))
+                ->add('chapo', 'textarea', array(
+                    'attr' => array(
+                        'class' => 'tinymce',
+                        'data-theme' => 'simple' // simple, advanced, bbcode
+                )))
                 ->add('body', 'textarea', array(
                     'attr' => array(
                         'class' => 'tinymce',
                         'data-theme' => 'advanced' // simple, advanced, bbcode
-            )))
-                ->add('shortText', 'textarea', array(
-                    'attr' => array(
-                        'class' => 'tinymce',
-                        'data-theme' => 'simple' // simple, advanced, bbcode
-            )))
-                ->add('position')
-                ->add('category')
-                ->add('isVisible')
+                )))
+                ->add('file')
+                ->add('isPicture', 'checkbox', array('data' => true))
+                ->add('metaTitle')
+                ->add('metaDescription')
+                ->add('category', 'entity', array(
+                    'class' => 'JohnAdminBundle:Category',
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->getVisibleCategoriesQueryBuilder(false);
+                    }
+                ))
         ;
     }
 

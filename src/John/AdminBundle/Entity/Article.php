@@ -12,8 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="John\AdminBundle\Repository\ArticleRepository")
  */
-class Article {
-
+class Article
+{
     /**
      * @var integer
      *
@@ -41,7 +41,7 @@ class Article {
      * @ORM\Column(length=255, unique=true)
      */
     private $slug;
-    
+
     /**
      * @var boolean
      *
@@ -55,7 +55,7 @@ class Article {
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
-    
+
     /**
      * @var string
      *
@@ -81,7 +81,7 @@ class Article {
      * @Assert\File(maxSize="2M")
      */
     public $file;
-    
+
     /**
      * @var boolean
      *
@@ -100,6 +100,34 @@ class Article {
      * @ORM\JoinColumn(nullable=true)
      */
     private $subCategory;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="metaTitle", type="string", length=255, nullable=true)
+     */
+    private $metaTitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="metaDescription", type="string", length=255, nullable=true)
+     */
+    private $metaDescription;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="John\AdminBundle\Entity\Tag", inversedBy="articles", cascade={"remove", "persist"})
+     * @ORM\JoinTable(name="article_tags")
+     */
+    private $tags;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -184,7 +212,7 @@ class Article {
     {
         return $this->slug;
     }
-    
+
     /**
      * Set isVisible
      *
@@ -230,7 +258,7 @@ class Article {
     {
         return $this->title;
     }
-    
+
     /**
      * Set chapo
      *
@@ -345,7 +373,7 @@ class Article {
     {
         return $this->subCategory;
     }
-    
+
     /**
      * Set isPicture
      *
@@ -368,7 +396,7 @@ class Article {
     {
         return $this->isPicture;
     }
-    
+
     public function getWebPath()
     {
         return null === $this->picture ? null : $this->getUploadDir() . '/' . $this->picture;
@@ -390,8 +418,8 @@ class Article {
     {
         $fileNameExplode = explode('.', $this->file->getClientOriginalName());
         $filenameExtension = end($fileNameExplode);
-        $fileName = md5(sha1($this->file->getClientOriginalName().microtime(true))).'.'.$filenameExtension;
-        
+        $fileName = md5(sha1($this->file->getClientOriginalName() . microtime(true))) . '.' . $filenameExtension;
+
         // Nous utilisons le nom de fichier original, donc il est dans la pratique
         // nécessaire de le nettoyer pour éviter les problèmes de sécurité
         // move copie le fichier présent chez le client dans le répertoire indiqué.
@@ -403,4 +431,84 @@ class Article {
         // La propriété file ne servira plus
         $this->file = null;
     }
+
+    /**
+     * Set metaTitle
+     *
+     * @param string $metaTitle
+     * @return Article
+     */
+    public function setMetaTitle($metaTitle)
+    {
+        $this->metaTitle = $metaTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get metaTitle
+     *
+     * @return string 
+     */
+    public function getMetaTitle()
+    {
+        return $this->metaTitle;
+    }
+
+    /**
+     * Set metaDescription
+     *
+     * @param string $metaDescription
+     * @return Article
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get metaDescription
+     *
+     * @return string 
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \John\AdminBundle\Entity\Tag $tag
+     * @return Article
+     */
+    public function addTag(\John\AdminBundle\Entity\Tag $tag)
+    {
+        $this->tags[] = $tag;
+        $tag->setArticle($this);
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \John\AdminBundle\Entity\Tag $tags
+     */
+    public function removeTag(\John\AdminBundle\Entity\Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
 }

@@ -47,10 +47,17 @@
                                             {% endif %}
 
                                             {# on affiche les informations de la sous catégorie #}    
-                                            <div class="layout-cell {% if loop.index is divisibleby(3) %}layout-item-7{% else %}layout-item-5{% endif %}" style="width: 33%" >
+                                            <div class="layout-cell {% if loop.index is divisibleby(3) or loop.index == loop.last %}layout-item-7{% else %}layout-item-5{% endif %}" style="width: 33%" >
                                                 <h1><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">{{ subCategory.title }}</a></h1>
-                                                <p style="text-align: center;"><a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}"><img alt="" src="{{ asset(['uploads/', subCategory.picture] | join | apply_filter('thumbnail_category')) }}" class=""></a><br></p>
-                                                <p>{{ subCategory.shortText| raw }}</p>
+                                                <p style="text-align: center;">
+                                                    <a href="{{ path('subcategory_show', { 'slug': subCategory.slug }) }}">
+                                                        <img alt="" src="{{ asset(['uploads/', subCategory.picture] | join | apply_filter('thumbnail_category')) }}" class="">
+                                                    </a>
+                                                    <br/>
+                                                </p>
+                                                {% if subCategory.chapo is not null and subCategory.chapo is not empty %}
+                                                    <p>{{ subCategory.chapo| raw }}</p>
+                                                {% endif %}
                                             </div>
 
                                             {% if loop.index is divisibleby(3) %}
@@ -99,7 +106,6 @@
                                     </div>
                                 {% endif %}
                             {% endif %}
-{#                          </div>#}
                         </article>
                     </div>
                 </div>

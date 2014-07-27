@@ -12,6 +12,7 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+                ->add('isVisible')
                 ->add('title', 'text')
                 ->add('chapo', 'textarea', array(
                     'attr' => array(
@@ -24,10 +25,16 @@ class ArticleType extends AbstractType
                         'data-theme' => 'advanced' // simple, advanced, bbcode
             )))
                 ->add('file')
-                ->add('isVisible')
                 ->add('isPicture', 'checkbox', array('data' => true))
                 ->add('category')
                 ->add('subCategory')
+                ->add('metaTitle')
+                ->add('metaDescription')
+                ->add('tags', 'collection', array(
+                                                'type' => new TagType(),
+                                                'allow_add'    => true,
+                                                'allow_delete' => true)
+                    )
         ;
     }
 

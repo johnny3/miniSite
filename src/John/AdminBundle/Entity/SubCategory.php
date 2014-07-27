@@ -72,7 +72,21 @@ class SubCategory {
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chapo", type="text", nullable=true)
+     */
+    private $chapo;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="body", type="text", nullable=true)
+     */
+    private $body;
+    
     /**
      * @var string
      *
@@ -91,20 +105,6 @@ class SubCategory {
      * @ORM\Column(name="is_picture", type="boolean", nullable=true)
      */
     private $isPicture;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="short_text", type="text", nullable=true)
-     */
-    private $shortText;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="body", type="text", nullable=true)
-     */
-    private $body;
 
     /**
      * @var string
@@ -283,6 +283,29 @@ class SubCategory {
     {
         return $this->title;
     }
+    
+        /**
+     * Set chapo
+     *
+     * @param string $chapo
+     * @return SubCategory
+     */
+    public function setChapo($chapo)
+    {
+        $this->chapo = $chapo;
+
+        return $this;
+    }
+
+    /**
+     * Get chapo
+     *
+     * @return string 
+     */
+    public function getChapo()
+    {
+        return $this->chapo;
+    }
 
     /**
      * Set picture
@@ -328,29 +351,6 @@ class SubCategory {
     public function getIsPicture()
     {
         return $this->isPicture;
-    }
-
-    /**
-     * Set shortText
-     *
-     * @param string $shortText
-     * @return SubCategory
-     */
-    public function setShortText($shortText)
-    {
-        $this->shortText = $shortText;
-
-        return $this;
-    }
-
-    /**
-     * Get shortText
-     *
-     * @return string 
-     */
-    public function getShortText()
-    {
-        return $this->shortText;
     }
 
     /**

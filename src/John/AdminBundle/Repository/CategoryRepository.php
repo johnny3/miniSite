@@ -45,7 +45,7 @@ class CategoryRepository extends EntityRepository
                         ->getResult();
     }
 
-    public function getVisibleCategories($withContact)
+    public function getVisibleCategoriesQueryBuilder($withContact)
     {
         $qb = $this->createQueryBuilder('c')
                 ->andWhere('c.contactCat = :contactCat')
@@ -54,8 +54,14 @@ class CategoryRepository extends EntityRepository
                 ->setParameter('is_visible', true)
                 ->orderBy('c.position', 'ASC');
 
-        return $qb->getQuery()
-                        ->getResult();
+        return $qb;
+    }
+    
+    public function getVisibleCategories($withContact)
+    {
+        return $this->getVisibleCategoriesQueryBuilder($withContact)
+                     ->getQuery()
+                     ->getResult();
     }
     
     public function getCategoriesByPosition()
